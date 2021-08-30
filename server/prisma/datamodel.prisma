@@ -1,0 +1,148 @@
+enum Permission {
+  ADMIN
+  PRODUCT
+  SALES
+  EXPENSE
+  INVENTORY
+  CUSTOMER
+  PERMISSIONUPDATE
+}
+
+type User {
+  id: ID! @id
+  email: String! @unique
+  password: String!
+  role: String!
+  permissions: [Permission!]! @scalarList(strategy: RELATION)
+  verified: Boolean!
+  name: String
+  confirmEmailToken: String
+  resetToken: String
+  resetTokenExpiry: String
+  products: [Product!]!
+  categories: [Category!]!
+  inventories: [Inventory!]!
+  inventoryItems: [InventoryItem!]!
+  customers: [Customer!]!
+  sales: [Sale!]!
+  saleItems: [SaleItem!]!
+  expenses: [Expense!]!
+}
+
+type Product {
+  id: ID! @id
+  name: String!
+  salePrice: String!
+  costPrice: String
+  unit: String
+  currency: String
+  notes: String
+  sku: String
+  image: String
+  largeImage: String
+  categories: [String!] @scalarList(strategy: RELATION)
+  createdAt: DateTime! @createdAt
+  updatedAt: DateTime! @updatedAt
+  user: User!
+}
+
+type Category {
+  id: ID! @id
+  name: String!
+  user: User!
+}
+
+type Inventory {
+  id: ID! @id
+  user: User!
+  name: String!
+  inventoryItems: [InventoryItem!]
+  createdAt: DateTime! @createdAt
+  updatedAt: DateTime! @updatedAt
+}
+
+type InventoryItem {
+  id: ID! @id
+  user: User!
+  product: Product!
+  inventory: Inventory!
+  amount: Float
+  transactions: [InventoryItemTransaction!]
+  createdAt: DateTime! @createdAt
+}
+
+enum InventoryItemTransactionAction {
+  MANUALLY ADDED
+  MANUALLY DEDUCTED
+  SALE DEDUCTION
+}
+
+type InventoryItemTransaction {
+  id: ID! @id
+  actor: User!
+  action: InventoryItemTransactionAction!
+  comment: String
+  dateTime: DateTime! @createdAt
+}
+
+type Customer {
+  id: ID! @id
+  user: User!
+  name: String!
+  email: String
+  phone: String
+  street1: String
+  street2: String
+  city: String
+  state: String
+  zipCode: String
+  country: String
+  createdAt: DateTime! @createdAt
+  updatedAt: DateTime! @updatedAt
+  sales: [Sale!]
+}
+
+enum SpecialSaleDeductionType {
+  FLAT
+  PERCENTAGE
+}
+
+type Sale {
+  id: ID! @id
+  user: User!
+  customer: Customer
+  timestamp: Int!
+  discountType: SpecialSaleDeductionType
+  discountValue: String
+  taxType: SpecialSaleDeductionType
+  taxValue: String
+  shipping: String
+  note: String
+  createdAt: DateTime! @createdAt
+  updatedAt: DateTime! @updatedAt
+  saleItems: [SaleItem!]!
+}
+
+type SaleItem {
+  id: ID! @id
+  sale: Sale!
+  product: Product!
+  salePrice: String!
+  costPrice: String
+  quantity: Int!
+  discountType: SpecialSaleDeductionType
+  discountValue: String
+  createdAt: DateTime! @createdAt
+  updatedAt: DateTime! @updatedAt
+}
+
+type Expense {
+  id: ID! @id
+  user: User!
+  name: String!
+  description: String
+  cost: String!
+  timestamp: Int!
+  createdAt: DateTime! @createdAt
+  updatedAt: DateTime! @updatedAt
+}

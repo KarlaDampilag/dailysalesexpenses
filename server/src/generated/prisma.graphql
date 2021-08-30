@@ -1,0 +1,4189 @@
+type AggregateCategory {
+  count: Int!
+}
+
+type AggregateCustomer {
+  count: Int!
+}
+
+type AggregateExpense {
+  count: Int!
+}
+
+type AggregateInventory {
+  count: Int!
+}
+
+type AggregateInventoryItem {
+  count: Int!
+}
+
+type AggregateInventoryItemTransaction {
+  count: Int!
+}
+
+type AggregateProduct {
+  count: Int!
+}
+
+type AggregateSale {
+  count: Int!
+}
+
+type AggregateSaleItem {
+  count: Int!
+}
+
+type AggregateUser {
+  count: Int!
+}
+
+type BatchPayload {
+  count: Long!
+}
+
+type Category {
+  id: ID!
+  name: String!
+  user: User!
+}
+
+type CategoryConnection {
+  pageInfo: PageInfo!
+  edges: [CategoryEdge]!
+  aggregate: AggregateCategory!
+}
+
+input CategoryCreateInput {
+  id: ID
+  name: String!
+  user: UserCreateOneWithoutCategoriesInput!
+}
+
+input CategoryCreateManyWithoutUserInput {
+  create: [CategoryCreateWithoutUserInput!]
+  connect: [CategoryWhereUniqueInput!]
+}
+
+input CategoryCreateWithoutUserInput {
+  id: ID
+  name: String!
+}
+
+type CategoryEdge {
+  node: Category!
+  cursor: String!
+}
+
+enum CategoryOrderByInput {
+  id_ASC
+  id_DESC
+  name_ASC
+  name_DESC
+}
+
+type CategoryPreviousValues {
+  id: ID!
+  name: String!
+}
+
+input CategoryScalarWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  name: String
+  name_not: String
+  name_in: [String!]
+  name_not_in: [String!]
+  name_lt: String
+  name_lte: String
+  name_gt: String
+  name_gte: String
+  name_contains: String
+  name_not_contains: String
+  name_starts_with: String
+  name_not_starts_with: String
+  name_ends_with: String
+  name_not_ends_with: String
+  AND: [CategoryScalarWhereInput!]
+  OR: [CategoryScalarWhereInput!]
+  NOT: [CategoryScalarWhereInput!]
+}
+
+type CategorySubscriptionPayload {
+  mutation: MutationType!
+  node: Category
+  updatedFields: [String!]
+  previousValues: CategoryPreviousValues
+}
+
+input CategorySubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: CategoryWhereInput
+  AND: [CategorySubscriptionWhereInput!]
+  OR: [CategorySubscriptionWhereInput!]
+  NOT: [CategorySubscriptionWhereInput!]
+}
+
+input CategoryUpdateInput {
+  name: String
+  user: UserUpdateOneRequiredWithoutCategoriesInput
+}
+
+input CategoryUpdateManyDataInput {
+  name: String
+}
+
+input CategoryUpdateManyMutationInput {
+  name: String
+}
+
+input CategoryUpdateManyWithoutUserInput {
+  create: [CategoryCreateWithoutUserInput!]
+  delete: [CategoryWhereUniqueInput!]
+  connect: [CategoryWhereUniqueInput!]
+  set: [CategoryWhereUniqueInput!]
+  disconnect: [CategoryWhereUniqueInput!]
+  update: [CategoryUpdateWithWhereUniqueWithoutUserInput!]
+  upsert: [CategoryUpsertWithWhereUniqueWithoutUserInput!]
+  deleteMany: [CategoryScalarWhereInput!]
+  updateMany: [CategoryUpdateManyWithWhereNestedInput!]
+}
+
+input CategoryUpdateManyWithWhereNestedInput {
+  where: CategoryScalarWhereInput!
+  data: CategoryUpdateManyDataInput!
+}
+
+input CategoryUpdateWithoutUserDataInput {
+  name: String
+}
+
+input CategoryUpdateWithWhereUniqueWithoutUserInput {
+  where: CategoryWhereUniqueInput!
+  data: CategoryUpdateWithoutUserDataInput!
+}
+
+input CategoryUpsertWithWhereUniqueWithoutUserInput {
+  where: CategoryWhereUniqueInput!
+  update: CategoryUpdateWithoutUserDataInput!
+  create: CategoryCreateWithoutUserInput!
+}
+
+input CategoryWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  name: String
+  name_not: String
+  name_in: [String!]
+  name_not_in: [String!]
+  name_lt: String
+  name_lte: String
+  name_gt: String
+  name_gte: String
+  name_contains: String
+  name_not_contains: String
+  name_starts_with: String
+  name_not_starts_with: String
+  name_ends_with: String
+  name_not_ends_with: String
+  user: UserWhereInput
+  AND: [CategoryWhereInput!]
+  OR: [CategoryWhereInput!]
+  NOT: [CategoryWhereInput!]
+}
+
+input CategoryWhereUniqueInput {
+  id: ID
+}
+
+type Customer {
+  id: ID!
+  user: User!
+  name: String!
+  email: String
+  phone: String
+  street1: String
+  street2: String
+  city: String
+  state: String
+  zipCode: String
+  country: String
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  sales(where: SaleWhereInput, orderBy: SaleOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Sale!]
+}
+
+type CustomerConnection {
+  pageInfo: PageInfo!
+  edges: [CustomerEdge]!
+  aggregate: AggregateCustomer!
+}
+
+input CustomerCreateInput {
+  id: ID
+  user: UserCreateOneWithoutCustomersInput!
+  name: String!
+  email: String
+  phone: String
+  street1: String
+  street2: String
+  city: String
+  state: String
+  zipCode: String
+  country: String
+  sales: SaleCreateManyWithoutCustomerInput
+}
+
+input CustomerCreateManyWithoutUserInput {
+  create: [CustomerCreateWithoutUserInput!]
+  connect: [CustomerWhereUniqueInput!]
+}
+
+input CustomerCreateOneWithoutSalesInput {
+  create: CustomerCreateWithoutSalesInput
+  connect: CustomerWhereUniqueInput
+}
+
+input CustomerCreateWithoutSalesInput {
+  id: ID
+  user: UserCreateOneWithoutCustomersInput!
+  name: String!
+  email: String
+  phone: String
+  street1: String
+  street2: String
+  city: String
+  state: String
+  zipCode: String
+  country: String
+}
+
+input CustomerCreateWithoutUserInput {
+  id: ID
+  name: String!
+  email: String
+  phone: String
+  street1: String
+  street2: String
+  city: String
+  state: String
+  zipCode: String
+  country: String
+  sales: SaleCreateManyWithoutCustomerInput
+}
+
+type CustomerEdge {
+  node: Customer!
+  cursor: String!
+}
+
+enum CustomerOrderByInput {
+  id_ASC
+  id_DESC
+  name_ASC
+  name_DESC
+  email_ASC
+  email_DESC
+  phone_ASC
+  phone_DESC
+  street1_ASC
+  street1_DESC
+  street2_ASC
+  street2_DESC
+  city_ASC
+  city_DESC
+  state_ASC
+  state_DESC
+  zipCode_ASC
+  zipCode_DESC
+  country_ASC
+  country_DESC
+  createdAt_ASC
+  createdAt_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+}
+
+type CustomerPreviousValues {
+  id: ID!
+  name: String!
+  email: String
+  phone: String
+  street1: String
+  street2: String
+  city: String
+  state: String
+  zipCode: String
+  country: String
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+input CustomerScalarWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  name: String
+  name_not: String
+  name_in: [String!]
+  name_not_in: [String!]
+  name_lt: String
+  name_lte: String
+  name_gt: String
+  name_gte: String
+  name_contains: String
+  name_not_contains: String
+  name_starts_with: String
+  name_not_starts_with: String
+  name_ends_with: String
+  name_not_ends_with: String
+  email: String
+  email_not: String
+  email_in: [String!]
+  email_not_in: [String!]
+  email_lt: String
+  email_lte: String
+  email_gt: String
+  email_gte: String
+  email_contains: String
+  email_not_contains: String
+  email_starts_with: String
+  email_not_starts_with: String
+  email_ends_with: String
+  email_not_ends_with: String
+  phone: String
+  phone_not: String
+  phone_in: [String!]
+  phone_not_in: [String!]
+  phone_lt: String
+  phone_lte: String
+  phone_gt: String
+  phone_gte: String
+  phone_contains: String
+  phone_not_contains: String
+  phone_starts_with: String
+  phone_not_starts_with: String
+  phone_ends_with: String
+  phone_not_ends_with: String
+  street1: String
+  street1_not: String
+  street1_in: [String!]
+  street1_not_in: [String!]
+  street1_lt: String
+  street1_lte: String
+  street1_gt: String
+  street1_gte: String
+  street1_contains: String
+  street1_not_contains: String
+  street1_starts_with: String
+  street1_not_starts_with: String
+  street1_ends_with: String
+  street1_not_ends_with: String
+  street2: String
+  street2_not: String
+  street2_in: [String!]
+  street2_not_in: [String!]
+  street2_lt: String
+  street2_lte: String
+  street2_gt: String
+  street2_gte: String
+  street2_contains: String
+  street2_not_contains: String
+  street2_starts_with: String
+  street2_not_starts_with: String
+  street2_ends_with: String
+  street2_not_ends_with: String
+  city: String
+  city_not: String
+  city_in: [String!]
+  city_not_in: [String!]
+  city_lt: String
+  city_lte: String
+  city_gt: String
+  city_gte: String
+  city_contains: String
+  city_not_contains: String
+  city_starts_with: String
+  city_not_starts_with: String
+  city_ends_with: String
+  city_not_ends_with: String
+  state: String
+  state_not: String
+  state_in: [String!]
+  state_not_in: [String!]
+  state_lt: String
+  state_lte: String
+  state_gt: String
+  state_gte: String
+  state_contains: String
+  state_not_contains: String
+  state_starts_with: String
+  state_not_starts_with: String
+  state_ends_with: String
+  state_not_ends_with: String
+  zipCode: String
+  zipCode_not: String
+  zipCode_in: [String!]
+  zipCode_not_in: [String!]
+  zipCode_lt: String
+  zipCode_lte: String
+  zipCode_gt: String
+  zipCode_gte: String
+  zipCode_contains: String
+  zipCode_not_contains: String
+  zipCode_starts_with: String
+  zipCode_not_starts_with: String
+  zipCode_ends_with: String
+  zipCode_not_ends_with: String
+  country: String
+  country_not: String
+  country_in: [String!]
+  country_not_in: [String!]
+  country_lt: String
+  country_lte: String
+  country_gt: String
+  country_gte: String
+  country_contains: String
+  country_not_contains: String
+  country_starts_with: String
+  country_not_starts_with: String
+  country_ends_with: String
+  country_not_ends_with: String
+  createdAt: DateTime
+  createdAt_not: DateTime
+  createdAt_in: [DateTime!]
+  createdAt_not_in: [DateTime!]
+  createdAt_lt: DateTime
+  createdAt_lte: DateTime
+  createdAt_gt: DateTime
+  createdAt_gte: DateTime
+  updatedAt: DateTime
+  updatedAt_not: DateTime
+  updatedAt_in: [DateTime!]
+  updatedAt_not_in: [DateTime!]
+  updatedAt_lt: DateTime
+  updatedAt_lte: DateTime
+  updatedAt_gt: DateTime
+  updatedAt_gte: DateTime
+  AND: [CustomerScalarWhereInput!]
+  OR: [CustomerScalarWhereInput!]
+  NOT: [CustomerScalarWhereInput!]
+}
+
+type CustomerSubscriptionPayload {
+  mutation: MutationType!
+  node: Customer
+  updatedFields: [String!]
+  previousValues: CustomerPreviousValues
+}
+
+input CustomerSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: CustomerWhereInput
+  AND: [CustomerSubscriptionWhereInput!]
+  OR: [CustomerSubscriptionWhereInput!]
+  NOT: [CustomerSubscriptionWhereInput!]
+}
+
+input CustomerUpdateInput {
+  user: UserUpdateOneRequiredWithoutCustomersInput
+  name: String
+  email: String
+  phone: String
+  street1: String
+  street2: String
+  city: String
+  state: String
+  zipCode: String
+  country: String
+  sales: SaleUpdateManyWithoutCustomerInput
+}
+
+input CustomerUpdateManyDataInput {
+  name: String
+  email: String
+  phone: String
+  street1: String
+  street2: String
+  city: String
+  state: String
+  zipCode: String
+  country: String
+}
+
+input CustomerUpdateManyMutationInput {
+  name: String
+  email: String
+  phone: String
+  street1: String
+  street2: String
+  city: String
+  state: String
+  zipCode: String
+  country: String
+}
+
+input CustomerUpdateManyWithoutUserInput {
+  create: [CustomerCreateWithoutUserInput!]
+  delete: [CustomerWhereUniqueInput!]
+  connect: [CustomerWhereUniqueInput!]
+  set: [CustomerWhereUniqueInput!]
+  disconnect: [CustomerWhereUniqueInput!]
+  update: [CustomerUpdateWithWhereUniqueWithoutUserInput!]
+  upsert: [CustomerUpsertWithWhereUniqueWithoutUserInput!]
+  deleteMany: [CustomerScalarWhereInput!]
+  updateMany: [CustomerUpdateManyWithWhereNestedInput!]
+}
+
+input CustomerUpdateManyWithWhereNestedInput {
+  where: CustomerScalarWhereInput!
+  data: CustomerUpdateManyDataInput!
+}
+
+input CustomerUpdateOneWithoutSalesInput {
+  create: CustomerCreateWithoutSalesInput
+  update: CustomerUpdateWithoutSalesDataInput
+  upsert: CustomerUpsertWithoutSalesInput
+  delete: Boolean
+  disconnect: Boolean
+  connect: CustomerWhereUniqueInput
+}
+
+input CustomerUpdateWithoutSalesDataInput {
+  user: UserUpdateOneRequiredWithoutCustomersInput
+  name: String
+  email: String
+  phone: String
+  street1: String
+  street2: String
+  city: String
+  state: String
+  zipCode: String
+  country: String
+}
+
+input CustomerUpdateWithoutUserDataInput {
+  name: String
+  email: String
+  phone: String
+  street1: String
+  street2: String
+  city: String
+  state: String
+  zipCode: String
+  country: String
+  sales: SaleUpdateManyWithoutCustomerInput
+}
+
+input CustomerUpdateWithWhereUniqueWithoutUserInput {
+  where: CustomerWhereUniqueInput!
+  data: CustomerUpdateWithoutUserDataInput!
+}
+
+input CustomerUpsertWithoutSalesInput {
+  update: CustomerUpdateWithoutSalesDataInput!
+  create: CustomerCreateWithoutSalesInput!
+}
+
+input CustomerUpsertWithWhereUniqueWithoutUserInput {
+  where: CustomerWhereUniqueInput!
+  update: CustomerUpdateWithoutUserDataInput!
+  create: CustomerCreateWithoutUserInput!
+}
+
+input CustomerWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  user: UserWhereInput
+  name: String
+  name_not: String
+  name_in: [String!]
+  name_not_in: [String!]
+  name_lt: String
+  name_lte: String
+  name_gt: String
+  name_gte: String
+  name_contains: String
+  name_not_contains: String
+  name_starts_with: String
+  name_not_starts_with: String
+  name_ends_with: String
+  name_not_ends_with: String
+  email: String
+  email_not: String
+  email_in: [String!]
+  email_not_in: [String!]
+  email_lt: String
+  email_lte: String
+  email_gt: String
+  email_gte: String
+  email_contains: String
+  email_not_contains: String
+  email_starts_with: String
+  email_not_starts_with: String
+  email_ends_with: String
+  email_not_ends_with: String
+  phone: String
+  phone_not: String
+  phone_in: [String!]
+  phone_not_in: [String!]
+  phone_lt: String
+  phone_lte: String
+  phone_gt: String
+  phone_gte: String
+  phone_contains: String
+  phone_not_contains: String
+  phone_starts_with: String
+  phone_not_starts_with: String
+  phone_ends_with: String
+  phone_not_ends_with: String
+  street1: String
+  street1_not: String
+  street1_in: [String!]
+  street1_not_in: [String!]
+  street1_lt: String
+  street1_lte: String
+  street1_gt: String
+  street1_gte: String
+  street1_contains: String
+  street1_not_contains: String
+  street1_starts_with: String
+  street1_not_starts_with: String
+  street1_ends_with: String
+  street1_not_ends_with: String
+  street2: String
+  street2_not: String
+  street2_in: [String!]
+  street2_not_in: [String!]
+  street2_lt: String
+  street2_lte: String
+  street2_gt: String
+  street2_gte: String
+  street2_contains: String
+  street2_not_contains: String
+  street2_starts_with: String
+  street2_not_starts_with: String
+  street2_ends_with: String
+  street2_not_ends_with: String
+  city: String
+  city_not: String
+  city_in: [String!]
+  city_not_in: [String!]
+  city_lt: String
+  city_lte: String
+  city_gt: String
+  city_gte: String
+  city_contains: String
+  city_not_contains: String
+  city_starts_with: String
+  city_not_starts_with: String
+  city_ends_with: String
+  city_not_ends_with: String
+  state: String
+  state_not: String
+  state_in: [String!]
+  state_not_in: [String!]
+  state_lt: String
+  state_lte: String
+  state_gt: String
+  state_gte: String
+  state_contains: String
+  state_not_contains: String
+  state_starts_with: String
+  state_not_starts_with: String
+  state_ends_with: String
+  state_not_ends_with: String
+  zipCode: String
+  zipCode_not: String
+  zipCode_in: [String!]
+  zipCode_not_in: [String!]
+  zipCode_lt: String
+  zipCode_lte: String
+  zipCode_gt: String
+  zipCode_gte: String
+  zipCode_contains: String
+  zipCode_not_contains: String
+  zipCode_starts_with: String
+  zipCode_not_starts_with: String
+  zipCode_ends_with: String
+  zipCode_not_ends_with: String
+  country: String
+  country_not: String
+  country_in: [String!]
+  country_not_in: [String!]
+  country_lt: String
+  country_lte: String
+  country_gt: String
+  country_gte: String
+  country_contains: String
+  country_not_contains: String
+  country_starts_with: String
+  country_not_starts_with: String
+  country_ends_with: String
+  country_not_ends_with: String
+  createdAt: DateTime
+  createdAt_not: DateTime
+  createdAt_in: [DateTime!]
+  createdAt_not_in: [DateTime!]
+  createdAt_lt: DateTime
+  createdAt_lte: DateTime
+  createdAt_gt: DateTime
+  createdAt_gte: DateTime
+  updatedAt: DateTime
+  updatedAt_not: DateTime
+  updatedAt_in: [DateTime!]
+  updatedAt_not_in: [DateTime!]
+  updatedAt_lt: DateTime
+  updatedAt_lte: DateTime
+  updatedAt_gt: DateTime
+  updatedAt_gte: DateTime
+  sales_every: SaleWhereInput
+  sales_some: SaleWhereInput
+  sales_none: SaleWhereInput
+  AND: [CustomerWhereInput!]
+  OR: [CustomerWhereInput!]
+  NOT: [CustomerWhereInput!]
+}
+
+input CustomerWhereUniqueInput {
+  id: ID
+}
+
+scalar DateTime
+
+type Expense {
+  id: ID!
+  user: User!
+  name: String!
+  description: String
+  cost: String!
+  timestamp: Int!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type ExpenseConnection {
+  pageInfo: PageInfo!
+  edges: [ExpenseEdge]!
+  aggregate: AggregateExpense!
+}
+
+input ExpenseCreateInput {
+  id: ID
+  user: UserCreateOneWithoutExpensesInput!
+  name: String!
+  description: String
+  cost: String!
+  timestamp: Int!
+}
+
+input ExpenseCreateManyWithoutUserInput {
+  create: [ExpenseCreateWithoutUserInput!]
+  connect: [ExpenseWhereUniqueInput!]
+}
+
+input ExpenseCreateWithoutUserInput {
+  id: ID
+  name: String!
+  description: String
+  cost: String!
+  timestamp: Int!
+}
+
+type ExpenseEdge {
+  node: Expense!
+  cursor: String!
+}
+
+enum ExpenseOrderByInput {
+  id_ASC
+  id_DESC
+  name_ASC
+  name_DESC
+  description_ASC
+  description_DESC
+  cost_ASC
+  cost_DESC
+  timestamp_ASC
+  timestamp_DESC
+  createdAt_ASC
+  createdAt_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+}
+
+type ExpensePreviousValues {
+  id: ID!
+  name: String!
+  description: String
+  cost: String!
+  timestamp: Int!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+input ExpenseScalarWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  name: String
+  name_not: String
+  name_in: [String!]
+  name_not_in: [String!]
+  name_lt: String
+  name_lte: String
+  name_gt: String
+  name_gte: String
+  name_contains: String
+  name_not_contains: String
+  name_starts_with: String
+  name_not_starts_with: String
+  name_ends_with: String
+  name_not_ends_with: String
+  description: String
+  description_not: String
+  description_in: [String!]
+  description_not_in: [String!]
+  description_lt: String
+  description_lte: String
+  description_gt: String
+  description_gte: String
+  description_contains: String
+  description_not_contains: String
+  description_starts_with: String
+  description_not_starts_with: String
+  description_ends_with: String
+  description_not_ends_with: String
+  cost: String
+  cost_not: String
+  cost_in: [String!]
+  cost_not_in: [String!]
+  cost_lt: String
+  cost_lte: String
+  cost_gt: String
+  cost_gte: String
+  cost_contains: String
+  cost_not_contains: String
+  cost_starts_with: String
+  cost_not_starts_with: String
+  cost_ends_with: String
+  cost_not_ends_with: String
+  timestamp: Int
+  timestamp_not: Int
+  timestamp_in: [Int!]
+  timestamp_not_in: [Int!]
+  timestamp_lt: Int
+  timestamp_lte: Int
+  timestamp_gt: Int
+  timestamp_gte: Int
+  createdAt: DateTime
+  createdAt_not: DateTime
+  createdAt_in: [DateTime!]
+  createdAt_not_in: [DateTime!]
+  createdAt_lt: DateTime
+  createdAt_lte: DateTime
+  createdAt_gt: DateTime
+  createdAt_gte: DateTime
+  updatedAt: DateTime
+  updatedAt_not: DateTime
+  updatedAt_in: [DateTime!]
+  updatedAt_not_in: [DateTime!]
+  updatedAt_lt: DateTime
+  updatedAt_lte: DateTime
+  updatedAt_gt: DateTime
+  updatedAt_gte: DateTime
+  AND: [ExpenseScalarWhereInput!]
+  OR: [ExpenseScalarWhereInput!]
+  NOT: [ExpenseScalarWhereInput!]
+}
+
+type ExpenseSubscriptionPayload {
+  mutation: MutationType!
+  node: Expense
+  updatedFields: [String!]
+  previousValues: ExpensePreviousValues
+}
+
+input ExpenseSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: ExpenseWhereInput
+  AND: [ExpenseSubscriptionWhereInput!]
+  OR: [ExpenseSubscriptionWhereInput!]
+  NOT: [ExpenseSubscriptionWhereInput!]
+}
+
+input ExpenseUpdateInput {
+  user: UserUpdateOneRequiredWithoutExpensesInput
+  name: String
+  description: String
+  cost: String
+  timestamp: Int
+}
+
+input ExpenseUpdateManyDataInput {
+  name: String
+  description: String
+  cost: String
+  timestamp: Int
+}
+
+input ExpenseUpdateManyMutationInput {
+  name: String
+  description: String
+  cost: String
+  timestamp: Int
+}
+
+input ExpenseUpdateManyWithoutUserInput {
+  create: [ExpenseCreateWithoutUserInput!]
+  delete: [ExpenseWhereUniqueInput!]
+  connect: [ExpenseWhereUniqueInput!]
+  set: [ExpenseWhereUniqueInput!]
+  disconnect: [ExpenseWhereUniqueInput!]
+  update: [ExpenseUpdateWithWhereUniqueWithoutUserInput!]
+  upsert: [ExpenseUpsertWithWhereUniqueWithoutUserInput!]
+  deleteMany: [ExpenseScalarWhereInput!]
+  updateMany: [ExpenseUpdateManyWithWhereNestedInput!]
+}
+
+input ExpenseUpdateManyWithWhereNestedInput {
+  where: ExpenseScalarWhereInput!
+  data: ExpenseUpdateManyDataInput!
+}
+
+input ExpenseUpdateWithoutUserDataInput {
+  name: String
+  description: String
+  cost: String
+  timestamp: Int
+}
+
+input ExpenseUpdateWithWhereUniqueWithoutUserInput {
+  where: ExpenseWhereUniqueInput!
+  data: ExpenseUpdateWithoutUserDataInput!
+}
+
+input ExpenseUpsertWithWhereUniqueWithoutUserInput {
+  where: ExpenseWhereUniqueInput!
+  update: ExpenseUpdateWithoutUserDataInput!
+  create: ExpenseCreateWithoutUserInput!
+}
+
+input ExpenseWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  user: UserWhereInput
+  name: String
+  name_not: String
+  name_in: [String!]
+  name_not_in: [String!]
+  name_lt: String
+  name_lte: String
+  name_gt: String
+  name_gte: String
+  name_contains: String
+  name_not_contains: String
+  name_starts_with: String
+  name_not_starts_with: String
+  name_ends_with: String
+  name_not_ends_with: String
+  description: String
+  description_not: String
+  description_in: [String!]
+  description_not_in: [String!]
+  description_lt: String
+  description_lte: String
+  description_gt: String
+  description_gte: String
+  description_contains: String
+  description_not_contains: String
+  description_starts_with: String
+  description_not_starts_with: String
+  description_ends_with: String
+  description_not_ends_with: String
+  cost: String
+  cost_not: String
+  cost_in: [String!]
+  cost_not_in: [String!]
+  cost_lt: String
+  cost_lte: String
+  cost_gt: String
+  cost_gte: String
+  cost_contains: String
+  cost_not_contains: String
+  cost_starts_with: String
+  cost_not_starts_with: String
+  cost_ends_with: String
+  cost_not_ends_with: String
+  timestamp: Int
+  timestamp_not: Int
+  timestamp_in: [Int!]
+  timestamp_not_in: [Int!]
+  timestamp_lt: Int
+  timestamp_lte: Int
+  timestamp_gt: Int
+  timestamp_gte: Int
+  createdAt: DateTime
+  createdAt_not: DateTime
+  createdAt_in: [DateTime!]
+  createdAt_not_in: [DateTime!]
+  createdAt_lt: DateTime
+  createdAt_lte: DateTime
+  createdAt_gt: DateTime
+  createdAt_gte: DateTime
+  updatedAt: DateTime
+  updatedAt_not: DateTime
+  updatedAt_in: [DateTime!]
+  updatedAt_not_in: [DateTime!]
+  updatedAt_lt: DateTime
+  updatedAt_lte: DateTime
+  updatedAt_gt: DateTime
+  updatedAt_gte: DateTime
+  AND: [ExpenseWhereInput!]
+  OR: [ExpenseWhereInput!]
+  NOT: [ExpenseWhereInput!]
+}
+
+input ExpenseWhereUniqueInput {
+  id: ID
+}
+
+type Inventory {
+  id: ID!
+  user: User!
+  name: String!
+  inventoryItems(where: InventoryItemWhereInput, orderBy: InventoryItemOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [InventoryItem!]
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type InventoryConnection {
+  pageInfo: PageInfo!
+  edges: [InventoryEdge]!
+  aggregate: AggregateInventory!
+}
+
+input InventoryCreateInput {
+  id: ID
+  user: UserCreateOneWithoutInventoriesInput!
+  name: String!
+  inventoryItems: InventoryItemCreateManyWithoutInventoryInput
+}
+
+input InventoryCreateManyWithoutUserInput {
+  create: [InventoryCreateWithoutUserInput!]
+  connect: [InventoryWhereUniqueInput!]
+}
+
+input InventoryCreateOneWithoutInventoryItemsInput {
+  create: InventoryCreateWithoutInventoryItemsInput
+  connect: InventoryWhereUniqueInput
+}
+
+input InventoryCreateWithoutInventoryItemsInput {
+  id: ID
+  user: UserCreateOneWithoutInventoriesInput!
+  name: String!
+}
+
+input InventoryCreateWithoutUserInput {
+  id: ID
+  name: String!
+  inventoryItems: InventoryItemCreateManyWithoutInventoryInput
+}
+
+type InventoryEdge {
+  node: Inventory!
+  cursor: String!
+}
+
+type InventoryItem {
+  id: ID!
+  user: User!
+  product: Product!
+  inventory: Inventory!
+  amount: Float
+  transactions(where: InventoryItemTransactionWhereInput, orderBy: InventoryItemTransactionOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [InventoryItemTransaction!]
+  createdAt: DateTime!
+}
+
+type InventoryItemConnection {
+  pageInfo: PageInfo!
+  edges: [InventoryItemEdge]!
+  aggregate: AggregateInventoryItem!
+}
+
+input InventoryItemCreateInput {
+  id: ID
+  user: UserCreateOneWithoutInventoryItemsInput!
+  product: ProductCreateOneInput!
+  inventory: InventoryCreateOneWithoutInventoryItemsInput!
+  amount: Float
+  transactions: InventoryItemTransactionCreateManyInput
+}
+
+input InventoryItemCreateManyWithoutInventoryInput {
+  create: [InventoryItemCreateWithoutInventoryInput!]
+  connect: [InventoryItemWhereUniqueInput!]
+}
+
+input InventoryItemCreateManyWithoutUserInput {
+  create: [InventoryItemCreateWithoutUserInput!]
+  connect: [InventoryItemWhereUniqueInput!]
+}
+
+input InventoryItemCreateWithoutInventoryInput {
+  id: ID
+  user: UserCreateOneWithoutInventoryItemsInput!
+  product: ProductCreateOneInput!
+  amount: Float
+  transactions: InventoryItemTransactionCreateManyInput
+}
+
+input InventoryItemCreateWithoutUserInput {
+  id: ID
+  product: ProductCreateOneInput!
+  inventory: InventoryCreateOneWithoutInventoryItemsInput!
+  amount: Float
+  transactions: InventoryItemTransactionCreateManyInput
+}
+
+type InventoryItemEdge {
+  node: InventoryItem!
+  cursor: String!
+}
+
+enum InventoryItemOrderByInput {
+  id_ASC
+  id_DESC
+  amount_ASC
+  amount_DESC
+  createdAt_ASC
+  createdAt_DESC
+}
+
+type InventoryItemPreviousValues {
+  id: ID!
+  amount: Float
+  createdAt: DateTime!
+}
+
+input InventoryItemScalarWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  amount: Float
+  amount_not: Float
+  amount_in: [Float!]
+  amount_not_in: [Float!]
+  amount_lt: Float
+  amount_lte: Float
+  amount_gt: Float
+  amount_gte: Float
+  createdAt: DateTime
+  createdAt_not: DateTime
+  createdAt_in: [DateTime!]
+  createdAt_not_in: [DateTime!]
+  createdAt_lt: DateTime
+  createdAt_lte: DateTime
+  createdAt_gt: DateTime
+  createdAt_gte: DateTime
+  AND: [InventoryItemScalarWhereInput!]
+  OR: [InventoryItemScalarWhereInput!]
+  NOT: [InventoryItemScalarWhereInput!]
+}
+
+type InventoryItemSubscriptionPayload {
+  mutation: MutationType!
+  node: InventoryItem
+  updatedFields: [String!]
+  previousValues: InventoryItemPreviousValues
+}
+
+input InventoryItemSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: InventoryItemWhereInput
+  AND: [InventoryItemSubscriptionWhereInput!]
+  OR: [InventoryItemSubscriptionWhereInput!]
+  NOT: [InventoryItemSubscriptionWhereInput!]
+}
+
+type InventoryItemTransaction {
+  id: ID!
+  actor: User!
+  action: InventoryItemTransactionAction!
+  comment: String
+  dateTime: DateTime!
+}
+
+enum InventoryItemTransactionAction {
+  MANUALLY
+  ADDED
+  DEDUCTED
+  SALE
+  DEDUCTION
+}
+
+type InventoryItemTransactionConnection {
+  pageInfo: PageInfo!
+  edges: [InventoryItemTransactionEdge]!
+  aggregate: AggregateInventoryItemTransaction!
+}
+
+input InventoryItemTransactionCreateInput {
+  id: ID
+  actor: UserCreateOneInput!
+  action: InventoryItemTransactionAction!
+  comment: String
+}
+
+input InventoryItemTransactionCreateManyInput {
+  create: [InventoryItemTransactionCreateInput!]
+  connect: [InventoryItemTransactionWhereUniqueInput!]
+}
+
+type InventoryItemTransactionEdge {
+  node: InventoryItemTransaction!
+  cursor: String!
+}
+
+enum InventoryItemTransactionOrderByInput {
+  id_ASC
+  id_DESC
+  action_ASC
+  action_DESC
+  comment_ASC
+  comment_DESC
+  dateTime_ASC
+  dateTime_DESC
+}
+
+type InventoryItemTransactionPreviousValues {
+  id: ID!
+  action: InventoryItemTransactionAction!
+  comment: String
+  dateTime: DateTime!
+}
+
+input InventoryItemTransactionScalarWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  action: InventoryItemTransactionAction
+  action_not: InventoryItemTransactionAction
+  action_in: [InventoryItemTransactionAction!]
+  action_not_in: [InventoryItemTransactionAction!]
+  comment: String
+  comment_not: String
+  comment_in: [String!]
+  comment_not_in: [String!]
+  comment_lt: String
+  comment_lte: String
+  comment_gt: String
+  comment_gte: String
+  comment_contains: String
+  comment_not_contains: String
+  comment_starts_with: String
+  comment_not_starts_with: String
+  comment_ends_with: String
+  comment_not_ends_with: String
+  dateTime: DateTime
+  dateTime_not: DateTime
+  dateTime_in: [DateTime!]
+  dateTime_not_in: [DateTime!]
+  dateTime_lt: DateTime
+  dateTime_lte: DateTime
+  dateTime_gt: DateTime
+  dateTime_gte: DateTime
+  AND: [InventoryItemTransactionScalarWhereInput!]
+  OR: [InventoryItemTransactionScalarWhereInput!]
+  NOT: [InventoryItemTransactionScalarWhereInput!]
+}
+
+type InventoryItemTransactionSubscriptionPayload {
+  mutation: MutationType!
+  node: InventoryItemTransaction
+  updatedFields: [String!]
+  previousValues: InventoryItemTransactionPreviousValues
+}
+
+input InventoryItemTransactionSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: InventoryItemTransactionWhereInput
+  AND: [InventoryItemTransactionSubscriptionWhereInput!]
+  OR: [InventoryItemTransactionSubscriptionWhereInput!]
+  NOT: [InventoryItemTransactionSubscriptionWhereInput!]
+}
+
+input InventoryItemTransactionUpdateDataInput {
+  actor: UserUpdateOneRequiredInput
+  action: InventoryItemTransactionAction
+  comment: String
+}
+
+input InventoryItemTransactionUpdateInput {
+  actor: UserUpdateOneRequiredInput
+  action: InventoryItemTransactionAction
+  comment: String
+}
+
+input InventoryItemTransactionUpdateManyDataInput {
+  action: InventoryItemTransactionAction
+  comment: String
+}
+
+input InventoryItemTransactionUpdateManyInput {
+  create: [InventoryItemTransactionCreateInput!]
+  update: [InventoryItemTransactionUpdateWithWhereUniqueNestedInput!]
+  upsert: [InventoryItemTransactionUpsertWithWhereUniqueNestedInput!]
+  delete: [InventoryItemTransactionWhereUniqueInput!]
+  connect: [InventoryItemTransactionWhereUniqueInput!]
+  set: [InventoryItemTransactionWhereUniqueInput!]
+  disconnect: [InventoryItemTransactionWhereUniqueInput!]
+  deleteMany: [InventoryItemTransactionScalarWhereInput!]
+  updateMany: [InventoryItemTransactionUpdateManyWithWhereNestedInput!]
+}
+
+input InventoryItemTransactionUpdateManyMutationInput {
+  action: InventoryItemTransactionAction
+  comment: String
+}
+
+input InventoryItemTransactionUpdateManyWithWhereNestedInput {
+  where: InventoryItemTransactionScalarWhereInput!
+  data: InventoryItemTransactionUpdateManyDataInput!
+}
+
+input InventoryItemTransactionUpdateWithWhereUniqueNestedInput {
+  where: InventoryItemTransactionWhereUniqueInput!
+  data: InventoryItemTransactionUpdateDataInput!
+}
+
+input InventoryItemTransactionUpsertWithWhereUniqueNestedInput {
+  where: InventoryItemTransactionWhereUniqueInput!
+  update: InventoryItemTransactionUpdateDataInput!
+  create: InventoryItemTransactionCreateInput!
+}
+
+input InventoryItemTransactionWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  actor: UserWhereInput
+  action: InventoryItemTransactionAction
+  action_not: InventoryItemTransactionAction
+  action_in: [InventoryItemTransactionAction!]
+  action_not_in: [InventoryItemTransactionAction!]
+  comment: String
+  comment_not: String
+  comment_in: [String!]
+  comment_not_in: [String!]
+  comment_lt: String
+  comment_lte: String
+  comment_gt: String
+  comment_gte: String
+  comment_contains: String
+  comment_not_contains: String
+  comment_starts_with: String
+  comment_not_starts_with: String
+  comment_ends_with: String
+  comment_not_ends_with: String
+  dateTime: DateTime
+  dateTime_not: DateTime
+  dateTime_in: [DateTime!]
+  dateTime_not_in: [DateTime!]
+  dateTime_lt: DateTime
+  dateTime_lte: DateTime
+  dateTime_gt: DateTime
+  dateTime_gte: DateTime
+  AND: [InventoryItemTransactionWhereInput!]
+  OR: [InventoryItemTransactionWhereInput!]
+  NOT: [InventoryItemTransactionWhereInput!]
+}
+
+input InventoryItemTransactionWhereUniqueInput {
+  id: ID
+}
+
+input InventoryItemUpdateInput {
+  user: UserUpdateOneRequiredWithoutInventoryItemsInput
+  product: ProductUpdateOneRequiredInput
+  inventory: InventoryUpdateOneRequiredWithoutInventoryItemsInput
+  amount: Float
+  transactions: InventoryItemTransactionUpdateManyInput
+}
+
+input InventoryItemUpdateManyDataInput {
+  amount: Float
+}
+
+input InventoryItemUpdateManyMutationInput {
+  amount: Float
+}
+
+input InventoryItemUpdateManyWithoutInventoryInput {
+  create: [InventoryItemCreateWithoutInventoryInput!]
+  delete: [InventoryItemWhereUniqueInput!]
+  connect: [InventoryItemWhereUniqueInput!]
+  set: [InventoryItemWhereUniqueInput!]
+  disconnect: [InventoryItemWhereUniqueInput!]
+  update: [InventoryItemUpdateWithWhereUniqueWithoutInventoryInput!]
+  upsert: [InventoryItemUpsertWithWhereUniqueWithoutInventoryInput!]
+  deleteMany: [InventoryItemScalarWhereInput!]
+  updateMany: [InventoryItemUpdateManyWithWhereNestedInput!]
+}
+
+input InventoryItemUpdateManyWithoutUserInput {
+  create: [InventoryItemCreateWithoutUserInput!]
+  delete: [InventoryItemWhereUniqueInput!]
+  connect: [InventoryItemWhereUniqueInput!]
+  set: [InventoryItemWhereUniqueInput!]
+  disconnect: [InventoryItemWhereUniqueInput!]
+  update: [InventoryItemUpdateWithWhereUniqueWithoutUserInput!]
+  upsert: [InventoryItemUpsertWithWhereUniqueWithoutUserInput!]
+  deleteMany: [InventoryItemScalarWhereInput!]
+  updateMany: [InventoryItemUpdateManyWithWhereNestedInput!]
+}
+
+input InventoryItemUpdateManyWithWhereNestedInput {
+  where: InventoryItemScalarWhereInput!
+  data: InventoryItemUpdateManyDataInput!
+}
+
+input InventoryItemUpdateWithoutInventoryDataInput {
+  user: UserUpdateOneRequiredWithoutInventoryItemsInput
+  product: ProductUpdateOneRequiredInput
+  amount: Float
+  transactions: InventoryItemTransactionUpdateManyInput
+}
+
+input InventoryItemUpdateWithoutUserDataInput {
+  product: ProductUpdateOneRequiredInput
+  inventory: InventoryUpdateOneRequiredWithoutInventoryItemsInput
+  amount: Float
+  transactions: InventoryItemTransactionUpdateManyInput
+}
+
+input InventoryItemUpdateWithWhereUniqueWithoutInventoryInput {
+  where: InventoryItemWhereUniqueInput!
+  data: InventoryItemUpdateWithoutInventoryDataInput!
+}
+
+input InventoryItemUpdateWithWhereUniqueWithoutUserInput {
+  where: InventoryItemWhereUniqueInput!
+  data: InventoryItemUpdateWithoutUserDataInput!
+}
+
+input InventoryItemUpsertWithWhereUniqueWithoutInventoryInput {
+  where: InventoryItemWhereUniqueInput!
+  update: InventoryItemUpdateWithoutInventoryDataInput!
+  create: InventoryItemCreateWithoutInventoryInput!
+}
+
+input InventoryItemUpsertWithWhereUniqueWithoutUserInput {
+  where: InventoryItemWhereUniqueInput!
+  update: InventoryItemUpdateWithoutUserDataInput!
+  create: InventoryItemCreateWithoutUserInput!
+}
+
+input InventoryItemWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  user: UserWhereInput
+  product: ProductWhereInput
+  inventory: InventoryWhereInput
+  amount: Float
+  amount_not: Float
+  amount_in: [Float!]
+  amount_not_in: [Float!]
+  amount_lt: Float
+  amount_lte: Float
+  amount_gt: Float
+  amount_gte: Float
+  transactions_every: InventoryItemTransactionWhereInput
+  transactions_some: InventoryItemTransactionWhereInput
+  transactions_none: InventoryItemTransactionWhereInput
+  createdAt: DateTime
+  createdAt_not: DateTime
+  createdAt_in: [DateTime!]
+  createdAt_not_in: [DateTime!]
+  createdAt_lt: DateTime
+  createdAt_lte: DateTime
+  createdAt_gt: DateTime
+  createdAt_gte: DateTime
+  AND: [InventoryItemWhereInput!]
+  OR: [InventoryItemWhereInput!]
+  NOT: [InventoryItemWhereInput!]
+}
+
+input InventoryItemWhereUniqueInput {
+  id: ID
+}
+
+enum InventoryOrderByInput {
+  id_ASC
+  id_DESC
+  name_ASC
+  name_DESC
+  createdAt_ASC
+  createdAt_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+}
+
+type InventoryPreviousValues {
+  id: ID!
+  name: String!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+input InventoryScalarWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  name: String
+  name_not: String
+  name_in: [String!]
+  name_not_in: [String!]
+  name_lt: String
+  name_lte: String
+  name_gt: String
+  name_gte: String
+  name_contains: String
+  name_not_contains: String
+  name_starts_with: String
+  name_not_starts_with: String
+  name_ends_with: String
+  name_not_ends_with: String
+  createdAt: DateTime
+  createdAt_not: DateTime
+  createdAt_in: [DateTime!]
+  createdAt_not_in: [DateTime!]
+  createdAt_lt: DateTime
+  createdAt_lte: DateTime
+  createdAt_gt: DateTime
+  createdAt_gte: DateTime
+  updatedAt: DateTime
+  updatedAt_not: DateTime
+  updatedAt_in: [DateTime!]
+  updatedAt_not_in: [DateTime!]
+  updatedAt_lt: DateTime
+  updatedAt_lte: DateTime
+  updatedAt_gt: DateTime
+  updatedAt_gte: DateTime
+  AND: [InventoryScalarWhereInput!]
+  OR: [InventoryScalarWhereInput!]
+  NOT: [InventoryScalarWhereInput!]
+}
+
+type InventorySubscriptionPayload {
+  mutation: MutationType!
+  node: Inventory
+  updatedFields: [String!]
+  previousValues: InventoryPreviousValues
+}
+
+input InventorySubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: InventoryWhereInput
+  AND: [InventorySubscriptionWhereInput!]
+  OR: [InventorySubscriptionWhereInput!]
+  NOT: [InventorySubscriptionWhereInput!]
+}
+
+input InventoryUpdateInput {
+  user: UserUpdateOneRequiredWithoutInventoriesInput
+  name: String
+  inventoryItems: InventoryItemUpdateManyWithoutInventoryInput
+}
+
+input InventoryUpdateManyDataInput {
+  name: String
+}
+
+input InventoryUpdateManyMutationInput {
+  name: String
+}
+
+input InventoryUpdateManyWithoutUserInput {
+  create: [InventoryCreateWithoutUserInput!]
+  delete: [InventoryWhereUniqueInput!]
+  connect: [InventoryWhereUniqueInput!]
+  set: [InventoryWhereUniqueInput!]
+  disconnect: [InventoryWhereUniqueInput!]
+  update: [InventoryUpdateWithWhereUniqueWithoutUserInput!]
+  upsert: [InventoryUpsertWithWhereUniqueWithoutUserInput!]
+  deleteMany: [InventoryScalarWhereInput!]
+  updateMany: [InventoryUpdateManyWithWhereNestedInput!]
+}
+
+input InventoryUpdateManyWithWhereNestedInput {
+  where: InventoryScalarWhereInput!
+  data: InventoryUpdateManyDataInput!
+}
+
+input InventoryUpdateOneRequiredWithoutInventoryItemsInput {
+  create: InventoryCreateWithoutInventoryItemsInput
+  update: InventoryUpdateWithoutInventoryItemsDataInput
+  upsert: InventoryUpsertWithoutInventoryItemsInput
+  connect: InventoryWhereUniqueInput
+}
+
+input InventoryUpdateWithoutInventoryItemsDataInput {
+  user: UserUpdateOneRequiredWithoutInventoriesInput
+  name: String
+}
+
+input InventoryUpdateWithoutUserDataInput {
+  name: String
+  inventoryItems: InventoryItemUpdateManyWithoutInventoryInput
+}
+
+input InventoryUpdateWithWhereUniqueWithoutUserInput {
+  where: InventoryWhereUniqueInput!
+  data: InventoryUpdateWithoutUserDataInput!
+}
+
+input InventoryUpsertWithoutInventoryItemsInput {
+  update: InventoryUpdateWithoutInventoryItemsDataInput!
+  create: InventoryCreateWithoutInventoryItemsInput!
+}
+
+input InventoryUpsertWithWhereUniqueWithoutUserInput {
+  where: InventoryWhereUniqueInput!
+  update: InventoryUpdateWithoutUserDataInput!
+  create: InventoryCreateWithoutUserInput!
+}
+
+input InventoryWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  user: UserWhereInput
+  name: String
+  name_not: String
+  name_in: [String!]
+  name_not_in: [String!]
+  name_lt: String
+  name_lte: String
+  name_gt: String
+  name_gte: String
+  name_contains: String
+  name_not_contains: String
+  name_starts_with: String
+  name_not_starts_with: String
+  name_ends_with: String
+  name_not_ends_with: String
+  inventoryItems_every: InventoryItemWhereInput
+  inventoryItems_some: InventoryItemWhereInput
+  inventoryItems_none: InventoryItemWhereInput
+  createdAt: DateTime
+  createdAt_not: DateTime
+  createdAt_in: [DateTime!]
+  createdAt_not_in: [DateTime!]
+  createdAt_lt: DateTime
+  createdAt_lte: DateTime
+  createdAt_gt: DateTime
+  createdAt_gte: DateTime
+  updatedAt: DateTime
+  updatedAt_not: DateTime
+  updatedAt_in: [DateTime!]
+  updatedAt_not_in: [DateTime!]
+  updatedAt_lt: DateTime
+  updatedAt_lte: DateTime
+  updatedAt_gt: DateTime
+  updatedAt_gte: DateTime
+  AND: [InventoryWhereInput!]
+  OR: [InventoryWhereInput!]
+  NOT: [InventoryWhereInput!]
+}
+
+input InventoryWhereUniqueInput {
+  id: ID
+}
+
+scalar Long
+
+type Mutation {
+  createCategory(data: CategoryCreateInput!): Category!
+  updateCategory(data: CategoryUpdateInput!, where: CategoryWhereUniqueInput!): Category
+  updateManyCategories(data: CategoryUpdateManyMutationInput!, where: CategoryWhereInput): BatchPayload!
+  upsertCategory(where: CategoryWhereUniqueInput!, create: CategoryCreateInput!, update: CategoryUpdateInput!): Category!
+  deleteCategory(where: CategoryWhereUniqueInput!): Category
+  deleteManyCategories(where: CategoryWhereInput): BatchPayload!
+  createCustomer(data: CustomerCreateInput!): Customer!
+  updateCustomer(data: CustomerUpdateInput!, where: CustomerWhereUniqueInput!): Customer
+  updateManyCustomers(data: CustomerUpdateManyMutationInput!, where: CustomerWhereInput): BatchPayload!
+  upsertCustomer(where: CustomerWhereUniqueInput!, create: CustomerCreateInput!, update: CustomerUpdateInput!): Customer!
+  deleteCustomer(where: CustomerWhereUniqueInput!): Customer
+  deleteManyCustomers(where: CustomerWhereInput): BatchPayload!
+  createExpense(data: ExpenseCreateInput!): Expense!
+  updateExpense(data: ExpenseUpdateInput!, where: ExpenseWhereUniqueInput!): Expense
+  updateManyExpenses(data: ExpenseUpdateManyMutationInput!, where: ExpenseWhereInput): BatchPayload!
+  upsertExpense(where: ExpenseWhereUniqueInput!, create: ExpenseCreateInput!, update: ExpenseUpdateInput!): Expense!
+  deleteExpense(where: ExpenseWhereUniqueInput!): Expense
+  deleteManyExpenses(where: ExpenseWhereInput): BatchPayload!
+  createInventory(data: InventoryCreateInput!): Inventory!
+  updateInventory(data: InventoryUpdateInput!, where: InventoryWhereUniqueInput!): Inventory
+  updateManyInventories(data: InventoryUpdateManyMutationInput!, where: InventoryWhereInput): BatchPayload!
+  upsertInventory(where: InventoryWhereUniqueInput!, create: InventoryCreateInput!, update: InventoryUpdateInput!): Inventory!
+  deleteInventory(where: InventoryWhereUniqueInput!): Inventory
+  deleteManyInventories(where: InventoryWhereInput): BatchPayload!
+  createInventoryItem(data: InventoryItemCreateInput!): InventoryItem!
+  updateInventoryItem(data: InventoryItemUpdateInput!, where: InventoryItemWhereUniqueInput!): InventoryItem
+  updateManyInventoryItems(data: InventoryItemUpdateManyMutationInput!, where: InventoryItemWhereInput): BatchPayload!
+  upsertInventoryItem(where: InventoryItemWhereUniqueInput!, create: InventoryItemCreateInput!, update: InventoryItemUpdateInput!): InventoryItem!
+  deleteInventoryItem(where: InventoryItemWhereUniqueInput!): InventoryItem
+  deleteManyInventoryItems(where: InventoryItemWhereInput): BatchPayload!
+  createInventoryItemTransaction(data: InventoryItemTransactionCreateInput!): InventoryItemTransaction!
+  updateInventoryItemTransaction(data: InventoryItemTransactionUpdateInput!, where: InventoryItemTransactionWhereUniqueInput!): InventoryItemTransaction
+  updateManyInventoryItemTransactions(data: InventoryItemTransactionUpdateManyMutationInput!, where: InventoryItemTransactionWhereInput): BatchPayload!
+  upsertInventoryItemTransaction(where: InventoryItemTransactionWhereUniqueInput!, create: InventoryItemTransactionCreateInput!, update: InventoryItemTransactionUpdateInput!): InventoryItemTransaction!
+  deleteInventoryItemTransaction(where: InventoryItemTransactionWhereUniqueInput!): InventoryItemTransaction
+  deleteManyInventoryItemTransactions(where: InventoryItemTransactionWhereInput): BatchPayload!
+  createProduct(data: ProductCreateInput!): Product!
+  updateProduct(data: ProductUpdateInput!, where: ProductWhereUniqueInput!): Product
+  updateManyProducts(data: ProductUpdateManyMutationInput!, where: ProductWhereInput): BatchPayload!
+  upsertProduct(where: ProductWhereUniqueInput!, create: ProductCreateInput!, update: ProductUpdateInput!): Product!
+  deleteProduct(where: ProductWhereUniqueInput!): Product
+  deleteManyProducts(where: ProductWhereInput): BatchPayload!
+  createSale(data: SaleCreateInput!): Sale!
+  updateSale(data: SaleUpdateInput!, where: SaleWhereUniqueInput!): Sale
+  updateManySales(data: SaleUpdateManyMutationInput!, where: SaleWhereInput): BatchPayload!
+  upsertSale(where: SaleWhereUniqueInput!, create: SaleCreateInput!, update: SaleUpdateInput!): Sale!
+  deleteSale(where: SaleWhereUniqueInput!): Sale
+  deleteManySales(where: SaleWhereInput): BatchPayload!
+  createSaleItem(data: SaleItemCreateInput!): SaleItem!
+  updateSaleItem(data: SaleItemUpdateInput!, where: SaleItemWhereUniqueInput!): SaleItem
+  updateManySaleItems(data: SaleItemUpdateManyMutationInput!, where: SaleItemWhereInput): BatchPayload!
+  upsertSaleItem(where: SaleItemWhereUniqueInput!, create: SaleItemCreateInput!, update: SaleItemUpdateInput!): SaleItem!
+  deleteSaleItem(where: SaleItemWhereUniqueInput!): SaleItem
+  deleteManySaleItems(where: SaleItemWhereInput): BatchPayload!
+  createUser(data: UserCreateInput!): User!
+  updateUser(data: UserUpdateInput!, where: UserWhereUniqueInput!): User
+  updateManyUsers(data: UserUpdateManyMutationInput!, where: UserWhereInput): BatchPayload!
+  upsertUser(where: UserWhereUniqueInput!, create: UserCreateInput!, update: UserUpdateInput!): User!
+  deleteUser(where: UserWhereUniqueInput!): User
+  deleteManyUsers(where: UserWhereInput): BatchPayload!
+}
+
+enum MutationType {
+  CREATED
+  UPDATED
+  DELETED
+}
+
+interface Node {
+  id: ID!
+}
+
+type PageInfo {
+  hasNextPage: Boolean!
+  hasPreviousPage: Boolean!
+  startCursor: String
+  endCursor: String
+}
+
+enum Permission {
+  ADMIN
+  PRODUCT
+  SALES
+  EXPENSE
+  INVENTORY
+  CUSTOMER
+  PERMISSIONUPDATE
+}
+
+type Product {
+  id: ID!
+  name: String!
+  salePrice: String!
+  costPrice: String
+  unit: String
+  currency: String
+  notes: String
+  sku: String
+  image: String
+  largeImage: String
+  categories: [String!]!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  user: User!
+}
+
+type ProductConnection {
+  pageInfo: PageInfo!
+  edges: [ProductEdge]!
+  aggregate: AggregateProduct!
+}
+
+input ProductCreatecategoriesInput {
+  set: [String!]
+}
+
+input ProductCreateInput {
+  id: ID
+  name: String!
+  salePrice: String!
+  costPrice: String
+  unit: String
+  currency: String
+  notes: String
+  sku: String
+  image: String
+  largeImage: String
+  categories: ProductCreatecategoriesInput
+  user: UserCreateOneWithoutProductsInput!
+}
+
+input ProductCreateManyWithoutUserInput {
+  create: [ProductCreateWithoutUserInput!]
+  connect: [ProductWhereUniqueInput!]
+}
+
+input ProductCreateOneInput {
+  create: ProductCreateInput
+  connect: ProductWhereUniqueInput
+}
+
+input ProductCreateWithoutUserInput {
+  id: ID
+  name: String!
+  salePrice: String!
+  costPrice: String
+  unit: String
+  currency: String
+  notes: String
+  sku: String
+  image: String
+  largeImage: String
+  categories: ProductCreatecategoriesInput
+}
+
+type ProductEdge {
+  node: Product!
+  cursor: String!
+}
+
+enum ProductOrderByInput {
+  id_ASC
+  id_DESC
+  name_ASC
+  name_DESC
+  salePrice_ASC
+  salePrice_DESC
+  costPrice_ASC
+  costPrice_DESC
+  unit_ASC
+  unit_DESC
+  currency_ASC
+  currency_DESC
+  notes_ASC
+  notes_DESC
+  sku_ASC
+  sku_DESC
+  image_ASC
+  image_DESC
+  largeImage_ASC
+  largeImage_DESC
+  createdAt_ASC
+  createdAt_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+}
+
+type ProductPreviousValues {
+  id: ID!
+  name: String!
+  salePrice: String!
+  costPrice: String
+  unit: String
+  currency: String
+  notes: String
+  sku: String
+  image: String
+  largeImage: String
+  categories: [String!]!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+input ProductScalarWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  name: String
+  name_not: String
+  name_in: [String!]
+  name_not_in: [String!]
+  name_lt: String
+  name_lte: String
+  name_gt: String
+  name_gte: String
+  name_contains: String
+  name_not_contains: String
+  name_starts_with: String
+  name_not_starts_with: String
+  name_ends_with: String
+  name_not_ends_with: String
+  salePrice: String
+  salePrice_not: String
+  salePrice_in: [String!]
+  salePrice_not_in: [String!]
+  salePrice_lt: String
+  salePrice_lte: String
+  salePrice_gt: String
+  salePrice_gte: String
+  salePrice_contains: String
+  salePrice_not_contains: String
+  salePrice_starts_with: String
+  salePrice_not_starts_with: String
+  salePrice_ends_with: String
+  salePrice_not_ends_with: String
+  costPrice: String
+  costPrice_not: String
+  costPrice_in: [String!]
+  costPrice_not_in: [String!]
+  costPrice_lt: String
+  costPrice_lte: String
+  costPrice_gt: String
+  costPrice_gte: String
+  costPrice_contains: String
+  costPrice_not_contains: String
+  costPrice_starts_with: String
+  costPrice_not_starts_with: String
+  costPrice_ends_with: String
+  costPrice_not_ends_with: String
+  unit: String
+  unit_not: String
+  unit_in: [String!]
+  unit_not_in: [String!]
+  unit_lt: String
+  unit_lte: String
+  unit_gt: String
+  unit_gte: String
+  unit_contains: String
+  unit_not_contains: String
+  unit_starts_with: String
+  unit_not_starts_with: String
+  unit_ends_with: String
+  unit_not_ends_with: String
+  currency: String
+  currency_not: String
+  currency_in: [String!]
+  currency_not_in: [String!]
+  currency_lt: String
+  currency_lte: String
+  currency_gt: String
+  currency_gte: String
+  currency_contains: String
+  currency_not_contains: String
+  currency_starts_with: String
+  currency_not_starts_with: String
+  currency_ends_with: String
+  currency_not_ends_with: String
+  notes: String
+  notes_not: String
+  notes_in: [String!]
+  notes_not_in: [String!]
+  notes_lt: String
+  notes_lte: String
+  notes_gt: String
+  notes_gte: String
+  notes_contains: String
+  notes_not_contains: String
+  notes_starts_with: String
+  notes_not_starts_with: String
+  notes_ends_with: String
+  notes_not_ends_with: String
+  sku: String
+  sku_not: String
+  sku_in: [String!]
+  sku_not_in: [String!]
+  sku_lt: String
+  sku_lte: String
+  sku_gt: String
+  sku_gte: String
+  sku_contains: String
+  sku_not_contains: String
+  sku_starts_with: String
+  sku_not_starts_with: String
+  sku_ends_with: String
+  sku_not_ends_with: String
+  image: String
+  image_not: String
+  image_in: [String!]
+  image_not_in: [String!]
+  image_lt: String
+  image_lte: String
+  image_gt: String
+  image_gte: String
+  image_contains: String
+  image_not_contains: String
+  image_starts_with: String
+  image_not_starts_with: String
+  image_ends_with: String
+  image_not_ends_with: String
+  largeImage: String
+  largeImage_not: String
+  largeImage_in: [String!]
+  largeImage_not_in: [String!]
+  largeImage_lt: String
+  largeImage_lte: String
+  largeImage_gt: String
+  largeImage_gte: String
+  largeImage_contains: String
+  largeImage_not_contains: String
+  largeImage_starts_with: String
+  largeImage_not_starts_with: String
+  largeImage_ends_with: String
+  largeImage_not_ends_with: String
+  createdAt: DateTime
+  createdAt_not: DateTime
+  createdAt_in: [DateTime!]
+  createdAt_not_in: [DateTime!]
+  createdAt_lt: DateTime
+  createdAt_lte: DateTime
+  createdAt_gt: DateTime
+  createdAt_gte: DateTime
+  updatedAt: DateTime
+  updatedAt_not: DateTime
+  updatedAt_in: [DateTime!]
+  updatedAt_not_in: [DateTime!]
+  updatedAt_lt: DateTime
+  updatedAt_lte: DateTime
+  updatedAt_gt: DateTime
+  updatedAt_gte: DateTime
+  AND: [ProductScalarWhereInput!]
+  OR: [ProductScalarWhereInput!]
+  NOT: [ProductScalarWhereInput!]
+}
+
+type ProductSubscriptionPayload {
+  mutation: MutationType!
+  node: Product
+  updatedFields: [String!]
+  previousValues: ProductPreviousValues
+}
+
+input ProductSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: ProductWhereInput
+  AND: [ProductSubscriptionWhereInput!]
+  OR: [ProductSubscriptionWhereInput!]
+  NOT: [ProductSubscriptionWhereInput!]
+}
+
+input ProductUpdatecategoriesInput {
+  set: [String!]
+}
+
+input ProductUpdateDataInput {
+  name: String
+  salePrice: String
+  costPrice: String
+  unit: String
+  currency: String
+  notes: String
+  sku: String
+  image: String
+  largeImage: String
+  categories: ProductUpdatecategoriesInput
+  user: UserUpdateOneRequiredWithoutProductsInput
+}
+
+input ProductUpdateInput {
+  name: String
+  salePrice: String
+  costPrice: String
+  unit: String
+  currency: String
+  notes: String
+  sku: String
+  image: String
+  largeImage: String
+  categories: ProductUpdatecategoriesInput
+  user: UserUpdateOneRequiredWithoutProductsInput
+}
+
+input ProductUpdateManyDataInput {
+  name: String
+  salePrice: String
+  costPrice: String
+  unit: String
+  currency: String
+  notes: String
+  sku: String
+  image: String
+  largeImage: String
+  categories: ProductUpdatecategoriesInput
+}
+
+input ProductUpdateManyMutationInput {
+  name: String
+  salePrice: String
+  costPrice: String
+  unit: String
+  currency: String
+  notes: String
+  sku: String
+  image: String
+  largeImage: String
+  categories: ProductUpdatecategoriesInput
+}
+
+input ProductUpdateManyWithoutUserInput {
+  create: [ProductCreateWithoutUserInput!]
+  delete: [ProductWhereUniqueInput!]
+  connect: [ProductWhereUniqueInput!]
+  set: [ProductWhereUniqueInput!]
+  disconnect: [ProductWhereUniqueInput!]
+  update: [ProductUpdateWithWhereUniqueWithoutUserInput!]
+  upsert: [ProductUpsertWithWhereUniqueWithoutUserInput!]
+  deleteMany: [ProductScalarWhereInput!]
+  updateMany: [ProductUpdateManyWithWhereNestedInput!]
+}
+
+input ProductUpdateManyWithWhereNestedInput {
+  where: ProductScalarWhereInput!
+  data: ProductUpdateManyDataInput!
+}
+
+input ProductUpdateOneRequiredInput {
+  create: ProductCreateInput
+  update: ProductUpdateDataInput
+  upsert: ProductUpsertNestedInput
+  connect: ProductWhereUniqueInput
+}
+
+input ProductUpdateWithoutUserDataInput {
+  name: String
+  salePrice: String
+  costPrice: String
+  unit: String
+  currency: String
+  notes: String
+  sku: String
+  image: String
+  largeImage: String
+  categories: ProductUpdatecategoriesInput
+}
+
+input ProductUpdateWithWhereUniqueWithoutUserInput {
+  where: ProductWhereUniqueInput!
+  data: ProductUpdateWithoutUserDataInput!
+}
+
+input ProductUpsertNestedInput {
+  update: ProductUpdateDataInput!
+  create: ProductCreateInput!
+}
+
+input ProductUpsertWithWhereUniqueWithoutUserInput {
+  where: ProductWhereUniqueInput!
+  update: ProductUpdateWithoutUserDataInput!
+  create: ProductCreateWithoutUserInput!
+}
+
+input ProductWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  name: String
+  name_not: String
+  name_in: [String!]
+  name_not_in: [String!]
+  name_lt: String
+  name_lte: String
+  name_gt: String
+  name_gte: String
+  name_contains: String
+  name_not_contains: String
+  name_starts_with: String
+  name_not_starts_with: String
+  name_ends_with: String
+  name_not_ends_with: String
+  salePrice: String
+  salePrice_not: String
+  salePrice_in: [String!]
+  salePrice_not_in: [String!]
+  salePrice_lt: String
+  salePrice_lte: String
+  salePrice_gt: String
+  salePrice_gte: String
+  salePrice_contains: String
+  salePrice_not_contains: String
+  salePrice_starts_with: String
+  salePrice_not_starts_with: String
+  salePrice_ends_with: String
+  salePrice_not_ends_with: String
+  costPrice: String
+  costPrice_not: String
+  costPrice_in: [String!]
+  costPrice_not_in: [String!]
+  costPrice_lt: String
+  costPrice_lte: String
+  costPrice_gt: String
+  costPrice_gte: String
+  costPrice_contains: String
+  costPrice_not_contains: String
+  costPrice_starts_with: String
+  costPrice_not_starts_with: String
+  costPrice_ends_with: String
+  costPrice_not_ends_with: String
+  unit: String
+  unit_not: String
+  unit_in: [String!]
+  unit_not_in: [String!]
+  unit_lt: String
+  unit_lte: String
+  unit_gt: String
+  unit_gte: String
+  unit_contains: String
+  unit_not_contains: String
+  unit_starts_with: String
+  unit_not_starts_with: String
+  unit_ends_with: String
+  unit_not_ends_with: String
+  currency: String
+  currency_not: String
+  currency_in: [String!]
+  currency_not_in: [String!]
+  currency_lt: String
+  currency_lte: String
+  currency_gt: String
+  currency_gte: String
+  currency_contains: String
+  currency_not_contains: String
+  currency_starts_with: String
+  currency_not_starts_with: String
+  currency_ends_with: String
+  currency_not_ends_with: String
+  notes: String
+  notes_not: String
+  notes_in: [String!]
+  notes_not_in: [String!]
+  notes_lt: String
+  notes_lte: String
+  notes_gt: String
+  notes_gte: String
+  notes_contains: String
+  notes_not_contains: String
+  notes_starts_with: String
+  notes_not_starts_with: String
+  notes_ends_with: String
+  notes_not_ends_with: String
+  sku: String
+  sku_not: String
+  sku_in: [String!]
+  sku_not_in: [String!]
+  sku_lt: String
+  sku_lte: String
+  sku_gt: String
+  sku_gte: String
+  sku_contains: String
+  sku_not_contains: String
+  sku_starts_with: String
+  sku_not_starts_with: String
+  sku_ends_with: String
+  sku_not_ends_with: String
+  image: String
+  image_not: String
+  image_in: [String!]
+  image_not_in: [String!]
+  image_lt: String
+  image_lte: String
+  image_gt: String
+  image_gte: String
+  image_contains: String
+  image_not_contains: String
+  image_starts_with: String
+  image_not_starts_with: String
+  image_ends_with: String
+  image_not_ends_with: String
+  largeImage: String
+  largeImage_not: String
+  largeImage_in: [String!]
+  largeImage_not_in: [String!]
+  largeImage_lt: String
+  largeImage_lte: String
+  largeImage_gt: String
+  largeImage_gte: String
+  largeImage_contains: String
+  largeImage_not_contains: String
+  largeImage_starts_with: String
+  largeImage_not_starts_with: String
+  largeImage_ends_with: String
+  largeImage_not_ends_with: String
+  createdAt: DateTime
+  createdAt_not: DateTime
+  createdAt_in: [DateTime!]
+  createdAt_not_in: [DateTime!]
+  createdAt_lt: DateTime
+  createdAt_lte: DateTime
+  createdAt_gt: DateTime
+  createdAt_gte: DateTime
+  updatedAt: DateTime
+  updatedAt_not: DateTime
+  updatedAt_in: [DateTime!]
+  updatedAt_not_in: [DateTime!]
+  updatedAt_lt: DateTime
+  updatedAt_lte: DateTime
+  updatedAt_gt: DateTime
+  updatedAt_gte: DateTime
+  user: UserWhereInput
+  AND: [ProductWhereInput!]
+  OR: [ProductWhereInput!]
+  NOT: [ProductWhereInput!]
+}
+
+input ProductWhereUniqueInput {
+  id: ID
+}
+
+type Query {
+  category(where: CategoryWhereUniqueInput!): Category
+  categories(where: CategoryWhereInput, orderBy: CategoryOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Category]!
+  categoriesConnection(where: CategoryWhereInput, orderBy: CategoryOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): CategoryConnection!
+  customer(where: CustomerWhereUniqueInput!): Customer
+  customers(where: CustomerWhereInput, orderBy: CustomerOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Customer]!
+  customersConnection(where: CustomerWhereInput, orderBy: CustomerOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): CustomerConnection!
+  expense(where: ExpenseWhereUniqueInput!): Expense
+  expenses(where: ExpenseWhereInput, orderBy: ExpenseOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Expense]!
+  expensesConnection(where: ExpenseWhereInput, orderBy: ExpenseOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): ExpenseConnection!
+  inventory(where: InventoryWhereUniqueInput!): Inventory
+  inventories(where: InventoryWhereInput, orderBy: InventoryOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Inventory]!
+  inventoriesConnection(where: InventoryWhereInput, orderBy: InventoryOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): InventoryConnection!
+  inventoryItem(where: InventoryItemWhereUniqueInput!): InventoryItem
+  inventoryItems(where: InventoryItemWhereInput, orderBy: InventoryItemOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [InventoryItem]!
+  inventoryItemsConnection(where: InventoryItemWhereInput, orderBy: InventoryItemOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): InventoryItemConnection!
+  inventoryItemTransaction(where: InventoryItemTransactionWhereUniqueInput!): InventoryItemTransaction
+  inventoryItemTransactions(where: InventoryItemTransactionWhereInput, orderBy: InventoryItemTransactionOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [InventoryItemTransaction]!
+  inventoryItemTransactionsConnection(where: InventoryItemTransactionWhereInput, orderBy: InventoryItemTransactionOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): InventoryItemTransactionConnection!
+  product(where: ProductWhereUniqueInput!): Product
+  products(where: ProductWhereInput, orderBy: ProductOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Product]!
+  productsConnection(where: ProductWhereInput, orderBy: ProductOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): ProductConnection!
+  sale(where: SaleWhereUniqueInput!): Sale
+  sales(where: SaleWhereInput, orderBy: SaleOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Sale]!
+  salesConnection(where: SaleWhereInput, orderBy: SaleOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): SaleConnection!
+  saleItem(where: SaleItemWhereUniqueInput!): SaleItem
+  saleItems(where: SaleItemWhereInput, orderBy: SaleItemOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [SaleItem]!
+  saleItemsConnection(where: SaleItemWhereInput, orderBy: SaleItemOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): SaleItemConnection!
+  user(where: UserWhereUniqueInput!): User
+  users(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [User]!
+  usersConnection(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): UserConnection!
+  node(id: ID!): Node
+}
+
+type Sale {
+  id: ID!
+  user: User!
+  customer: Customer
+  timestamp: Int!
+  discountType: SpecialSaleDeductionType
+  discountValue: String
+  taxType: SpecialSaleDeductionType
+  taxValue: String
+  shipping: String
+  note: String
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  saleItems(where: SaleItemWhereInput, orderBy: SaleItemOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [SaleItem!]
+}
+
+type SaleConnection {
+  pageInfo: PageInfo!
+  edges: [SaleEdge]!
+  aggregate: AggregateSale!
+}
+
+input SaleCreateInput {
+  id: ID
+  user: UserCreateOneWithoutSalesInput!
+  customer: CustomerCreateOneWithoutSalesInput
+  timestamp: Int!
+  discountType: SpecialSaleDeductionType
+  discountValue: String
+  taxType: SpecialSaleDeductionType
+  taxValue: String
+  shipping: String
+  note: String
+  saleItems: SaleItemCreateManyWithoutSaleInput
+}
+
+input SaleCreateManyWithoutCustomerInput {
+  create: [SaleCreateWithoutCustomerInput!]
+  connect: [SaleWhereUniqueInput!]
+}
+
+input SaleCreateManyWithoutUserInput {
+  create: [SaleCreateWithoutUserInput!]
+  connect: [SaleWhereUniqueInput!]
+}
+
+input SaleCreateOneWithoutSaleItemsInput {
+  create: SaleCreateWithoutSaleItemsInput
+  connect: SaleWhereUniqueInput
+}
+
+input SaleCreateWithoutCustomerInput {
+  id: ID
+  user: UserCreateOneWithoutSalesInput!
+  timestamp: Int!
+  discountType: SpecialSaleDeductionType
+  discountValue: String
+  taxType: SpecialSaleDeductionType
+  taxValue: String
+  shipping: String
+  note: String
+  saleItems: SaleItemCreateManyWithoutSaleInput
+}
+
+input SaleCreateWithoutSaleItemsInput {
+  id: ID
+  user: UserCreateOneWithoutSalesInput!
+  customer: CustomerCreateOneWithoutSalesInput
+  timestamp: Int!
+  discountType: SpecialSaleDeductionType
+  discountValue: String
+  taxType: SpecialSaleDeductionType
+  taxValue: String
+  shipping: String
+  note: String
+}
+
+input SaleCreateWithoutUserInput {
+  id: ID
+  customer: CustomerCreateOneWithoutSalesInput
+  timestamp: Int!
+  discountType: SpecialSaleDeductionType
+  discountValue: String
+  taxType: SpecialSaleDeductionType
+  taxValue: String
+  shipping: String
+  note: String
+  saleItems: SaleItemCreateManyWithoutSaleInput
+}
+
+type SaleEdge {
+  node: Sale!
+  cursor: String!
+}
+
+type SaleItem {
+  id: ID!
+  sale: Sale!
+  product: Product!
+  salePrice: String!
+  costPrice: String
+  quantity: Int!
+  discountType: SpecialSaleDeductionType
+  discountValue: String
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type SaleItemConnection {
+  pageInfo: PageInfo!
+  edges: [SaleItemEdge]!
+  aggregate: AggregateSaleItem!
+}
+
+input SaleItemCreateInput {
+  id: ID
+  sale: SaleCreateOneWithoutSaleItemsInput!
+  product: ProductCreateOneInput!
+  salePrice: String!
+  costPrice: String
+  quantity: Int!
+  discountType: SpecialSaleDeductionType
+  discountValue: String
+}
+
+input SaleItemCreateManyInput {
+  create: [SaleItemCreateInput!]
+  connect: [SaleItemWhereUniqueInput!]
+}
+
+input SaleItemCreateManyWithoutSaleInput {
+  create: [SaleItemCreateWithoutSaleInput!]
+  connect: [SaleItemWhereUniqueInput!]
+}
+
+input SaleItemCreateWithoutSaleInput {
+  id: ID
+  product: ProductCreateOneInput!
+  salePrice: String!
+  costPrice: String
+  quantity: Int!
+  discountType: SpecialSaleDeductionType
+  discountValue: String
+}
+
+type SaleItemEdge {
+  node: SaleItem!
+  cursor: String!
+}
+
+enum SaleItemOrderByInput {
+  id_ASC
+  id_DESC
+  salePrice_ASC
+  salePrice_DESC
+  costPrice_ASC
+  costPrice_DESC
+  quantity_ASC
+  quantity_DESC
+  discountType_ASC
+  discountType_DESC
+  discountValue_ASC
+  discountValue_DESC
+  createdAt_ASC
+  createdAt_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+}
+
+type SaleItemPreviousValues {
+  id: ID!
+  salePrice: String!
+  costPrice: String
+  quantity: Int!
+  discountType: SpecialSaleDeductionType
+  discountValue: String
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+input SaleItemScalarWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  salePrice: String
+  salePrice_not: String
+  salePrice_in: [String!]
+  salePrice_not_in: [String!]
+  salePrice_lt: String
+  salePrice_lte: String
+  salePrice_gt: String
+  salePrice_gte: String
+  salePrice_contains: String
+  salePrice_not_contains: String
+  salePrice_starts_with: String
+  salePrice_not_starts_with: String
+  salePrice_ends_with: String
+  salePrice_not_ends_with: String
+  costPrice: String
+  costPrice_not: String
+  costPrice_in: [String!]
+  costPrice_not_in: [String!]
+  costPrice_lt: String
+  costPrice_lte: String
+  costPrice_gt: String
+  costPrice_gte: String
+  costPrice_contains: String
+  costPrice_not_contains: String
+  costPrice_starts_with: String
+  costPrice_not_starts_with: String
+  costPrice_ends_with: String
+  costPrice_not_ends_with: String
+  quantity: Int
+  quantity_not: Int
+  quantity_in: [Int!]
+  quantity_not_in: [Int!]
+  quantity_lt: Int
+  quantity_lte: Int
+  quantity_gt: Int
+  quantity_gte: Int
+  discountType: SpecialSaleDeductionType
+  discountType_not: SpecialSaleDeductionType
+  discountType_in: [SpecialSaleDeductionType!]
+  discountType_not_in: [SpecialSaleDeductionType!]
+  discountValue: String
+  discountValue_not: String
+  discountValue_in: [String!]
+  discountValue_not_in: [String!]
+  discountValue_lt: String
+  discountValue_lte: String
+  discountValue_gt: String
+  discountValue_gte: String
+  discountValue_contains: String
+  discountValue_not_contains: String
+  discountValue_starts_with: String
+  discountValue_not_starts_with: String
+  discountValue_ends_with: String
+  discountValue_not_ends_with: String
+  createdAt: DateTime
+  createdAt_not: DateTime
+  createdAt_in: [DateTime!]
+  createdAt_not_in: [DateTime!]
+  createdAt_lt: DateTime
+  createdAt_lte: DateTime
+  createdAt_gt: DateTime
+  createdAt_gte: DateTime
+  updatedAt: DateTime
+  updatedAt_not: DateTime
+  updatedAt_in: [DateTime!]
+  updatedAt_not_in: [DateTime!]
+  updatedAt_lt: DateTime
+  updatedAt_lte: DateTime
+  updatedAt_gt: DateTime
+  updatedAt_gte: DateTime
+  AND: [SaleItemScalarWhereInput!]
+  OR: [SaleItemScalarWhereInput!]
+  NOT: [SaleItemScalarWhereInput!]
+}
+
+type SaleItemSubscriptionPayload {
+  mutation: MutationType!
+  node: SaleItem
+  updatedFields: [String!]
+  previousValues: SaleItemPreviousValues
+}
+
+input SaleItemSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: SaleItemWhereInput
+  AND: [SaleItemSubscriptionWhereInput!]
+  OR: [SaleItemSubscriptionWhereInput!]
+  NOT: [SaleItemSubscriptionWhereInput!]
+}
+
+input SaleItemUpdateDataInput {
+  sale: SaleUpdateOneRequiredWithoutSaleItemsInput
+  product: ProductUpdateOneRequiredInput
+  salePrice: String
+  costPrice: String
+  quantity: Int
+  discountType: SpecialSaleDeductionType
+  discountValue: String
+}
+
+input SaleItemUpdateInput {
+  sale: SaleUpdateOneRequiredWithoutSaleItemsInput
+  product: ProductUpdateOneRequiredInput
+  salePrice: String
+  costPrice: String
+  quantity: Int
+  discountType: SpecialSaleDeductionType
+  discountValue: String
+}
+
+input SaleItemUpdateManyDataInput {
+  salePrice: String
+  costPrice: String
+  quantity: Int
+  discountType: SpecialSaleDeductionType
+  discountValue: String
+}
+
+input SaleItemUpdateManyInput {
+  create: [SaleItemCreateInput!]
+  update: [SaleItemUpdateWithWhereUniqueNestedInput!]
+  upsert: [SaleItemUpsertWithWhereUniqueNestedInput!]
+  delete: [SaleItemWhereUniqueInput!]
+  connect: [SaleItemWhereUniqueInput!]
+  set: [SaleItemWhereUniqueInput!]
+  disconnect: [SaleItemWhereUniqueInput!]
+  deleteMany: [SaleItemScalarWhereInput!]
+  updateMany: [SaleItemUpdateManyWithWhereNestedInput!]
+}
+
+input SaleItemUpdateManyMutationInput {
+  salePrice: String
+  costPrice: String
+  quantity: Int
+  discountType: SpecialSaleDeductionType
+  discountValue: String
+}
+
+input SaleItemUpdateManyWithoutSaleInput {
+  create: [SaleItemCreateWithoutSaleInput!]
+  delete: [SaleItemWhereUniqueInput!]
+  connect: [SaleItemWhereUniqueInput!]
+  set: [SaleItemWhereUniqueInput!]
+  disconnect: [SaleItemWhereUniqueInput!]
+  update: [SaleItemUpdateWithWhereUniqueWithoutSaleInput!]
+  upsert: [SaleItemUpsertWithWhereUniqueWithoutSaleInput!]
+  deleteMany: [SaleItemScalarWhereInput!]
+  updateMany: [SaleItemUpdateManyWithWhereNestedInput!]
+}
+
+input SaleItemUpdateManyWithWhereNestedInput {
+  where: SaleItemScalarWhereInput!
+  data: SaleItemUpdateManyDataInput!
+}
+
+input SaleItemUpdateWithoutSaleDataInput {
+  product: ProductUpdateOneRequiredInput
+  salePrice: String
+  costPrice: String
+  quantity: Int
+  discountType: SpecialSaleDeductionType
+  discountValue: String
+}
+
+input SaleItemUpdateWithWhereUniqueNestedInput {
+  where: SaleItemWhereUniqueInput!
+  data: SaleItemUpdateDataInput!
+}
+
+input SaleItemUpdateWithWhereUniqueWithoutSaleInput {
+  where: SaleItemWhereUniqueInput!
+  data: SaleItemUpdateWithoutSaleDataInput!
+}
+
+input SaleItemUpsertWithWhereUniqueNestedInput {
+  where: SaleItemWhereUniqueInput!
+  update: SaleItemUpdateDataInput!
+  create: SaleItemCreateInput!
+}
+
+input SaleItemUpsertWithWhereUniqueWithoutSaleInput {
+  where: SaleItemWhereUniqueInput!
+  update: SaleItemUpdateWithoutSaleDataInput!
+  create: SaleItemCreateWithoutSaleInput!
+}
+
+input SaleItemWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  sale: SaleWhereInput
+  product: ProductWhereInput
+  salePrice: String
+  salePrice_not: String
+  salePrice_in: [String!]
+  salePrice_not_in: [String!]
+  salePrice_lt: String
+  salePrice_lte: String
+  salePrice_gt: String
+  salePrice_gte: String
+  salePrice_contains: String
+  salePrice_not_contains: String
+  salePrice_starts_with: String
+  salePrice_not_starts_with: String
+  salePrice_ends_with: String
+  salePrice_not_ends_with: String
+  costPrice: String
+  costPrice_not: String
+  costPrice_in: [String!]
+  costPrice_not_in: [String!]
+  costPrice_lt: String
+  costPrice_lte: String
+  costPrice_gt: String
+  costPrice_gte: String
+  costPrice_contains: String
+  costPrice_not_contains: String
+  costPrice_starts_with: String
+  costPrice_not_starts_with: String
+  costPrice_ends_with: String
+  costPrice_not_ends_with: String
+  quantity: Int
+  quantity_not: Int
+  quantity_in: [Int!]
+  quantity_not_in: [Int!]
+  quantity_lt: Int
+  quantity_lte: Int
+  quantity_gt: Int
+  quantity_gte: Int
+  discountType: SpecialSaleDeductionType
+  discountType_not: SpecialSaleDeductionType
+  discountType_in: [SpecialSaleDeductionType!]
+  discountType_not_in: [SpecialSaleDeductionType!]
+  discountValue: String
+  discountValue_not: String
+  discountValue_in: [String!]
+  discountValue_not_in: [String!]
+  discountValue_lt: String
+  discountValue_lte: String
+  discountValue_gt: String
+  discountValue_gte: String
+  discountValue_contains: String
+  discountValue_not_contains: String
+  discountValue_starts_with: String
+  discountValue_not_starts_with: String
+  discountValue_ends_with: String
+  discountValue_not_ends_with: String
+  createdAt: DateTime
+  createdAt_not: DateTime
+  createdAt_in: [DateTime!]
+  createdAt_not_in: [DateTime!]
+  createdAt_lt: DateTime
+  createdAt_lte: DateTime
+  createdAt_gt: DateTime
+  createdAt_gte: DateTime
+  updatedAt: DateTime
+  updatedAt_not: DateTime
+  updatedAt_in: [DateTime!]
+  updatedAt_not_in: [DateTime!]
+  updatedAt_lt: DateTime
+  updatedAt_lte: DateTime
+  updatedAt_gt: DateTime
+  updatedAt_gte: DateTime
+  AND: [SaleItemWhereInput!]
+  OR: [SaleItemWhereInput!]
+  NOT: [SaleItemWhereInput!]
+}
+
+input SaleItemWhereUniqueInput {
+  id: ID
+}
+
+enum SaleOrderByInput {
+  id_ASC
+  id_DESC
+  timestamp_ASC
+  timestamp_DESC
+  discountType_ASC
+  discountType_DESC
+  discountValue_ASC
+  discountValue_DESC
+  taxType_ASC
+  taxType_DESC
+  taxValue_ASC
+  taxValue_DESC
+  shipping_ASC
+  shipping_DESC
+  note_ASC
+  note_DESC
+  createdAt_ASC
+  createdAt_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+}
+
+type SalePreviousValues {
+  id: ID!
+  timestamp: Int!
+  discountType: SpecialSaleDeductionType
+  discountValue: String
+  taxType: SpecialSaleDeductionType
+  taxValue: String
+  shipping: String
+  note: String
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+input SaleScalarWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  timestamp: Int
+  timestamp_not: Int
+  timestamp_in: [Int!]
+  timestamp_not_in: [Int!]
+  timestamp_lt: Int
+  timestamp_lte: Int
+  timestamp_gt: Int
+  timestamp_gte: Int
+  discountType: SpecialSaleDeductionType
+  discountType_not: SpecialSaleDeductionType
+  discountType_in: [SpecialSaleDeductionType!]
+  discountType_not_in: [SpecialSaleDeductionType!]
+  discountValue: String
+  discountValue_not: String
+  discountValue_in: [String!]
+  discountValue_not_in: [String!]
+  discountValue_lt: String
+  discountValue_lte: String
+  discountValue_gt: String
+  discountValue_gte: String
+  discountValue_contains: String
+  discountValue_not_contains: String
+  discountValue_starts_with: String
+  discountValue_not_starts_with: String
+  discountValue_ends_with: String
+  discountValue_not_ends_with: String
+  taxType: SpecialSaleDeductionType
+  taxType_not: SpecialSaleDeductionType
+  taxType_in: [SpecialSaleDeductionType!]
+  taxType_not_in: [SpecialSaleDeductionType!]
+  taxValue: String
+  taxValue_not: String
+  taxValue_in: [String!]
+  taxValue_not_in: [String!]
+  taxValue_lt: String
+  taxValue_lte: String
+  taxValue_gt: String
+  taxValue_gte: String
+  taxValue_contains: String
+  taxValue_not_contains: String
+  taxValue_starts_with: String
+  taxValue_not_starts_with: String
+  taxValue_ends_with: String
+  taxValue_not_ends_with: String
+  shipping: String
+  shipping_not: String
+  shipping_in: [String!]
+  shipping_not_in: [String!]
+  shipping_lt: String
+  shipping_lte: String
+  shipping_gt: String
+  shipping_gte: String
+  shipping_contains: String
+  shipping_not_contains: String
+  shipping_starts_with: String
+  shipping_not_starts_with: String
+  shipping_ends_with: String
+  shipping_not_ends_with: String
+  note: String
+  note_not: String
+  note_in: [String!]
+  note_not_in: [String!]
+  note_lt: String
+  note_lte: String
+  note_gt: String
+  note_gte: String
+  note_contains: String
+  note_not_contains: String
+  note_starts_with: String
+  note_not_starts_with: String
+  note_ends_with: String
+  note_not_ends_with: String
+  createdAt: DateTime
+  createdAt_not: DateTime
+  createdAt_in: [DateTime!]
+  createdAt_not_in: [DateTime!]
+  createdAt_lt: DateTime
+  createdAt_lte: DateTime
+  createdAt_gt: DateTime
+  createdAt_gte: DateTime
+  updatedAt: DateTime
+  updatedAt_not: DateTime
+  updatedAt_in: [DateTime!]
+  updatedAt_not_in: [DateTime!]
+  updatedAt_lt: DateTime
+  updatedAt_lte: DateTime
+  updatedAt_gt: DateTime
+  updatedAt_gte: DateTime
+  AND: [SaleScalarWhereInput!]
+  OR: [SaleScalarWhereInput!]
+  NOT: [SaleScalarWhereInput!]
+}
+
+type SaleSubscriptionPayload {
+  mutation: MutationType!
+  node: Sale
+  updatedFields: [String!]
+  previousValues: SalePreviousValues
+}
+
+input SaleSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: SaleWhereInput
+  AND: [SaleSubscriptionWhereInput!]
+  OR: [SaleSubscriptionWhereInput!]
+  NOT: [SaleSubscriptionWhereInput!]
+}
+
+input SaleUpdateInput {
+  user: UserUpdateOneRequiredWithoutSalesInput
+  customer: CustomerUpdateOneWithoutSalesInput
+  timestamp: Int
+  discountType: SpecialSaleDeductionType
+  discountValue: String
+  taxType: SpecialSaleDeductionType
+  taxValue: String
+  shipping: String
+  note: String
+  saleItems: SaleItemUpdateManyWithoutSaleInput
+}
+
+input SaleUpdateManyDataInput {
+  timestamp: Int
+  discountType: SpecialSaleDeductionType
+  discountValue: String
+  taxType: SpecialSaleDeductionType
+  taxValue: String
+  shipping: String
+  note: String
+}
+
+input SaleUpdateManyMutationInput {
+  timestamp: Int
+  discountType: SpecialSaleDeductionType
+  discountValue: String
+  taxType: SpecialSaleDeductionType
+  taxValue: String
+  shipping: String
+  note: String
+}
+
+input SaleUpdateManyWithoutCustomerInput {
+  create: [SaleCreateWithoutCustomerInput!]
+  delete: [SaleWhereUniqueInput!]
+  connect: [SaleWhereUniqueInput!]
+  set: [SaleWhereUniqueInput!]
+  disconnect: [SaleWhereUniqueInput!]
+  update: [SaleUpdateWithWhereUniqueWithoutCustomerInput!]
+  upsert: [SaleUpsertWithWhereUniqueWithoutCustomerInput!]
+  deleteMany: [SaleScalarWhereInput!]
+  updateMany: [SaleUpdateManyWithWhereNestedInput!]
+}
+
+input SaleUpdateManyWithoutUserInput {
+  create: [SaleCreateWithoutUserInput!]
+  delete: [SaleWhereUniqueInput!]
+  connect: [SaleWhereUniqueInput!]
+  set: [SaleWhereUniqueInput!]
+  disconnect: [SaleWhereUniqueInput!]
+  update: [SaleUpdateWithWhereUniqueWithoutUserInput!]
+  upsert: [SaleUpsertWithWhereUniqueWithoutUserInput!]
+  deleteMany: [SaleScalarWhereInput!]
+  updateMany: [SaleUpdateManyWithWhereNestedInput!]
+}
+
+input SaleUpdateManyWithWhereNestedInput {
+  where: SaleScalarWhereInput!
+  data: SaleUpdateManyDataInput!
+}
+
+input SaleUpdateOneRequiredWithoutSaleItemsInput {
+  create: SaleCreateWithoutSaleItemsInput
+  update: SaleUpdateWithoutSaleItemsDataInput
+  upsert: SaleUpsertWithoutSaleItemsInput
+  connect: SaleWhereUniqueInput
+}
+
+input SaleUpdateWithoutCustomerDataInput {
+  user: UserUpdateOneRequiredWithoutSalesInput
+  timestamp: Int
+  discountType: SpecialSaleDeductionType
+  discountValue: String
+  taxType: SpecialSaleDeductionType
+  taxValue: String
+  shipping: String
+  note: String
+  saleItems: SaleItemUpdateManyWithoutSaleInput
+}
+
+input SaleUpdateWithoutSaleItemsDataInput {
+  user: UserUpdateOneRequiredWithoutSalesInput
+  customer: CustomerUpdateOneWithoutSalesInput
+  timestamp: Int
+  discountType: SpecialSaleDeductionType
+  discountValue: String
+  taxType: SpecialSaleDeductionType
+  taxValue: String
+  shipping: String
+  note: String
+}
+
+input SaleUpdateWithoutUserDataInput {
+  customer: CustomerUpdateOneWithoutSalesInput
+  timestamp: Int
+  discountType: SpecialSaleDeductionType
+  discountValue: String
+  taxType: SpecialSaleDeductionType
+  taxValue: String
+  shipping: String
+  note: String
+  saleItems: SaleItemUpdateManyWithoutSaleInput
+}
+
+input SaleUpdateWithWhereUniqueWithoutCustomerInput {
+  where: SaleWhereUniqueInput!
+  data: SaleUpdateWithoutCustomerDataInput!
+}
+
+input SaleUpdateWithWhereUniqueWithoutUserInput {
+  where: SaleWhereUniqueInput!
+  data: SaleUpdateWithoutUserDataInput!
+}
+
+input SaleUpsertWithoutSaleItemsInput {
+  update: SaleUpdateWithoutSaleItemsDataInput!
+  create: SaleCreateWithoutSaleItemsInput!
+}
+
+input SaleUpsertWithWhereUniqueWithoutCustomerInput {
+  where: SaleWhereUniqueInput!
+  update: SaleUpdateWithoutCustomerDataInput!
+  create: SaleCreateWithoutCustomerInput!
+}
+
+input SaleUpsertWithWhereUniqueWithoutUserInput {
+  where: SaleWhereUniqueInput!
+  update: SaleUpdateWithoutUserDataInput!
+  create: SaleCreateWithoutUserInput!
+}
+
+input SaleWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  user: UserWhereInput
+  customer: CustomerWhereInput
+  timestamp: Int
+  timestamp_not: Int
+  timestamp_in: [Int!]
+  timestamp_not_in: [Int!]
+  timestamp_lt: Int
+  timestamp_lte: Int
+  timestamp_gt: Int
+  timestamp_gte: Int
+  discountType: SpecialSaleDeductionType
+  discountType_not: SpecialSaleDeductionType
+  discountType_in: [SpecialSaleDeductionType!]
+  discountType_not_in: [SpecialSaleDeductionType!]
+  discountValue: String
+  discountValue_not: String
+  discountValue_in: [String!]
+  discountValue_not_in: [String!]
+  discountValue_lt: String
+  discountValue_lte: String
+  discountValue_gt: String
+  discountValue_gte: String
+  discountValue_contains: String
+  discountValue_not_contains: String
+  discountValue_starts_with: String
+  discountValue_not_starts_with: String
+  discountValue_ends_with: String
+  discountValue_not_ends_with: String
+  taxType: SpecialSaleDeductionType
+  taxType_not: SpecialSaleDeductionType
+  taxType_in: [SpecialSaleDeductionType!]
+  taxType_not_in: [SpecialSaleDeductionType!]
+  taxValue: String
+  taxValue_not: String
+  taxValue_in: [String!]
+  taxValue_not_in: [String!]
+  taxValue_lt: String
+  taxValue_lte: String
+  taxValue_gt: String
+  taxValue_gte: String
+  taxValue_contains: String
+  taxValue_not_contains: String
+  taxValue_starts_with: String
+  taxValue_not_starts_with: String
+  taxValue_ends_with: String
+  taxValue_not_ends_with: String
+  shipping: String
+  shipping_not: String
+  shipping_in: [String!]
+  shipping_not_in: [String!]
+  shipping_lt: String
+  shipping_lte: String
+  shipping_gt: String
+  shipping_gte: String
+  shipping_contains: String
+  shipping_not_contains: String
+  shipping_starts_with: String
+  shipping_not_starts_with: String
+  shipping_ends_with: String
+  shipping_not_ends_with: String
+  note: String
+  note_not: String
+  note_in: [String!]
+  note_not_in: [String!]
+  note_lt: String
+  note_lte: String
+  note_gt: String
+  note_gte: String
+  note_contains: String
+  note_not_contains: String
+  note_starts_with: String
+  note_not_starts_with: String
+  note_ends_with: String
+  note_not_ends_with: String
+  createdAt: DateTime
+  createdAt_not: DateTime
+  createdAt_in: [DateTime!]
+  createdAt_not_in: [DateTime!]
+  createdAt_lt: DateTime
+  createdAt_lte: DateTime
+  createdAt_gt: DateTime
+  createdAt_gte: DateTime
+  updatedAt: DateTime
+  updatedAt_not: DateTime
+  updatedAt_in: [DateTime!]
+  updatedAt_not_in: [DateTime!]
+  updatedAt_lt: DateTime
+  updatedAt_lte: DateTime
+  updatedAt_gt: DateTime
+  updatedAt_gte: DateTime
+  saleItems_every: SaleItemWhereInput
+  saleItems_some: SaleItemWhereInput
+  saleItems_none: SaleItemWhereInput
+  AND: [SaleWhereInput!]
+  OR: [SaleWhereInput!]
+  NOT: [SaleWhereInput!]
+}
+
+input SaleWhereUniqueInput {
+  id: ID
+}
+
+enum SpecialSaleDeductionType {
+  FLAT
+  PERCENTAGE
+}
+
+type Subscription {
+  category(where: CategorySubscriptionWhereInput): CategorySubscriptionPayload
+  customer(where: CustomerSubscriptionWhereInput): CustomerSubscriptionPayload
+  expense(where: ExpenseSubscriptionWhereInput): ExpenseSubscriptionPayload
+  inventory(where: InventorySubscriptionWhereInput): InventorySubscriptionPayload
+  inventoryItem(where: InventoryItemSubscriptionWhereInput): InventoryItemSubscriptionPayload
+  inventoryItemTransaction(where: InventoryItemTransactionSubscriptionWhereInput): InventoryItemTransactionSubscriptionPayload
+  product(where: ProductSubscriptionWhereInput): ProductSubscriptionPayload
+  sale(where: SaleSubscriptionWhereInput): SaleSubscriptionPayload
+  saleItem(where: SaleItemSubscriptionWhereInput): SaleItemSubscriptionPayload
+  user(where: UserSubscriptionWhereInput): UserSubscriptionPayload
+}
+
+type User {
+  id: ID!
+  email: String!
+  password: String!
+  role: String!
+  permissions: [Permission!]!
+  verified: Boolean!
+  name: String
+  confirmEmailToken: String
+  resetToken: String
+  resetTokenExpiry: String
+  products(where: ProductWhereInput, orderBy: ProductOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Product!]
+  categories(where: CategoryWhereInput, orderBy: CategoryOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Category!]
+  inventories(where: InventoryWhereInput, orderBy: InventoryOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Inventory!]
+  inventoryItems(where: InventoryItemWhereInput, orderBy: InventoryItemOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [InventoryItem!]
+  customers(where: CustomerWhereInput, orderBy: CustomerOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Customer!]
+  sales(where: SaleWhereInput, orderBy: SaleOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Sale!]
+  saleItems(where: SaleItemWhereInput, orderBy: SaleItemOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [SaleItem!]
+  expenses(where: ExpenseWhereInput, orderBy: ExpenseOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Expense!]
+}
+
+type UserConnection {
+  pageInfo: PageInfo!
+  edges: [UserEdge]!
+  aggregate: AggregateUser!
+}
+
+input UserCreateInput {
+  id: ID
+  email: String!
+  password: String!
+  role: String!
+  permissions: UserCreatepermissionsInput
+  verified: Boolean!
+  name: String
+  confirmEmailToken: String
+  resetToken: String
+  resetTokenExpiry: String
+  products: ProductCreateManyWithoutUserInput
+  categories: CategoryCreateManyWithoutUserInput
+  inventories: InventoryCreateManyWithoutUserInput
+  inventoryItems: InventoryItemCreateManyWithoutUserInput
+  customers: CustomerCreateManyWithoutUserInput
+  sales: SaleCreateManyWithoutUserInput
+  saleItems: SaleItemCreateManyInput
+  expenses: ExpenseCreateManyWithoutUserInput
+}
+
+input UserCreateOneInput {
+  create: UserCreateInput
+  connect: UserWhereUniqueInput
+}
+
+input UserCreateOneWithoutCategoriesInput {
+  create: UserCreateWithoutCategoriesInput
+  connect: UserWhereUniqueInput
+}
+
+input UserCreateOneWithoutCustomersInput {
+  create: UserCreateWithoutCustomersInput
+  connect: UserWhereUniqueInput
+}
+
+input UserCreateOneWithoutExpensesInput {
+  create: UserCreateWithoutExpensesInput
+  connect: UserWhereUniqueInput
+}
+
+input UserCreateOneWithoutInventoriesInput {
+  create: UserCreateWithoutInventoriesInput
+  connect: UserWhereUniqueInput
+}
+
+input UserCreateOneWithoutInventoryItemsInput {
+  create: UserCreateWithoutInventoryItemsInput
+  connect: UserWhereUniqueInput
+}
+
+input UserCreateOneWithoutProductsInput {
+  create: UserCreateWithoutProductsInput
+  connect: UserWhereUniqueInput
+}
+
+input UserCreateOneWithoutSalesInput {
+  create: UserCreateWithoutSalesInput
+  connect: UserWhereUniqueInput
+}
+
+input UserCreatepermissionsInput {
+  set: [Permission!]
+}
+
+input UserCreateWithoutCategoriesInput {
+  id: ID
+  email: String!
+  password: String!
+  role: String!
+  permissions: UserCreatepermissionsInput
+  verified: Boolean!
+  name: String
+  confirmEmailToken: String
+  resetToken: String
+  resetTokenExpiry: String
+  products: ProductCreateManyWithoutUserInput
+  inventories: InventoryCreateManyWithoutUserInput
+  inventoryItems: InventoryItemCreateManyWithoutUserInput
+  customers: CustomerCreateManyWithoutUserInput
+  sales: SaleCreateManyWithoutUserInput
+  saleItems: SaleItemCreateManyInput
+  expenses: ExpenseCreateManyWithoutUserInput
+}
+
+input UserCreateWithoutCustomersInput {
+  id: ID
+  email: String!
+  password: String!
+  role: String!
+  permissions: UserCreatepermissionsInput
+  verified: Boolean!
+  name: String
+  confirmEmailToken: String
+  resetToken: String
+  resetTokenExpiry: String
+  products: ProductCreateManyWithoutUserInput
+  categories: CategoryCreateManyWithoutUserInput
+  inventories: InventoryCreateManyWithoutUserInput
+  inventoryItems: InventoryItemCreateManyWithoutUserInput
+  sales: SaleCreateManyWithoutUserInput
+  saleItems: SaleItemCreateManyInput
+  expenses: ExpenseCreateManyWithoutUserInput
+}
+
+input UserCreateWithoutExpensesInput {
+  id: ID
+  email: String!
+  password: String!
+  role: String!
+  permissions: UserCreatepermissionsInput
+  verified: Boolean!
+  name: String
+  confirmEmailToken: String
+  resetToken: String
+  resetTokenExpiry: String
+  products: ProductCreateManyWithoutUserInput
+  categories: CategoryCreateManyWithoutUserInput
+  inventories: InventoryCreateManyWithoutUserInput
+  inventoryItems: InventoryItemCreateManyWithoutUserInput
+  customers: CustomerCreateManyWithoutUserInput
+  sales: SaleCreateManyWithoutUserInput
+  saleItems: SaleItemCreateManyInput
+}
+
+input UserCreateWithoutInventoriesInput {
+  id: ID
+  email: String!
+  password: String!
+  role: String!
+  permissions: UserCreatepermissionsInput
+  verified: Boolean!
+  name: String
+  confirmEmailToken: String
+  resetToken: String
+  resetTokenExpiry: String
+  products: ProductCreateManyWithoutUserInput
+  categories: CategoryCreateManyWithoutUserInput
+  inventoryItems: InventoryItemCreateManyWithoutUserInput
+  customers: CustomerCreateManyWithoutUserInput
+  sales: SaleCreateManyWithoutUserInput
+  saleItems: SaleItemCreateManyInput
+  expenses: ExpenseCreateManyWithoutUserInput
+}
+
+input UserCreateWithoutInventoryItemsInput {
+  id: ID
+  email: String!
+  password: String!
+  role: String!
+  permissions: UserCreatepermissionsInput
+  verified: Boolean!
+  name: String
+  confirmEmailToken: String
+  resetToken: String
+  resetTokenExpiry: String
+  products: ProductCreateManyWithoutUserInput
+  categories: CategoryCreateManyWithoutUserInput
+  inventories: InventoryCreateManyWithoutUserInput
+  customers: CustomerCreateManyWithoutUserInput
+  sales: SaleCreateManyWithoutUserInput
+  saleItems: SaleItemCreateManyInput
+  expenses: ExpenseCreateManyWithoutUserInput
+}
+
+input UserCreateWithoutProductsInput {
+  id: ID
+  email: String!
+  password: String!
+  role: String!
+  permissions: UserCreatepermissionsInput
+  verified: Boolean!
+  name: String
+  confirmEmailToken: String
+  resetToken: String
+  resetTokenExpiry: String
+  categories: CategoryCreateManyWithoutUserInput
+  inventories: InventoryCreateManyWithoutUserInput
+  inventoryItems: InventoryItemCreateManyWithoutUserInput
+  customers: CustomerCreateManyWithoutUserInput
+  sales: SaleCreateManyWithoutUserInput
+  saleItems: SaleItemCreateManyInput
+  expenses: ExpenseCreateManyWithoutUserInput
+}
+
+input UserCreateWithoutSalesInput {
+  id: ID
+  email: String!
+  password: String!
+  role: String!
+  permissions: UserCreatepermissionsInput
+  verified: Boolean!
+  name: String
+  confirmEmailToken: String
+  resetToken: String
+  resetTokenExpiry: String
+  products: ProductCreateManyWithoutUserInput
+  categories: CategoryCreateManyWithoutUserInput
+  inventories: InventoryCreateManyWithoutUserInput
+  inventoryItems: InventoryItemCreateManyWithoutUserInput
+  customers: CustomerCreateManyWithoutUserInput
+  saleItems: SaleItemCreateManyInput
+  expenses: ExpenseCreateManyWithoutUserInput
+}
+
+type UserEdge {
+  node: User!
+  cursor: String!
+}
+
+enum UserOrderByInput {
+  id_ASC
+  id_DESC
+  email_ASC
+  email_DESC
+  password_ASC
+  password_DESC
+  role_ASC
+  role_DESC
+  verified_ASC
+  verified_DESC
+  name_ASC
+  name_DESC
+  confirmEmailToken_ASC
+  confirmEmailToken_DESC
+  resetToken_ASC
+  resetToken_DESC
+  resetTokenExpiry_ASC
+  resetTokenExpiry_DESC
+}
+
+type UserPreviousValues {
+  id: ID!
+  email: String!
+  password: String!
+  role: String!
+  permissions: [Permission!]!
+  verified: Boolean!
+  name: String
+  confirmEmailToken: String
+  resetToken: String
+  resetTokenExpiry: String
+}
+
+type UserSubscriptionPayload {
+  mutation: MutationType!
+  node: User
+  updatedFields: [String!]
+  previousValues: UserPreviousValues
+}
+
+input UserSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: UserWhereInput
+  AND: [UserSubscriptionWhereInput!]
+  OR: [UserSubscriptionWhereInput!]
+  NOT: [UserSubscriptionWhereInput!]
+}
+
+input UserUpdateDataInput {
+  email: String
+  password: String
+  role: String
+  permissions: UserUpdatepermissionsInput
+  verified: Boolean
+  name: String
+  confirmEmailToken: String
+  resetToken: String
+  resetTokenExpiry: String
+  products: ProductUpdateManyWithoutUserInput
+  categories: CategoryUpdateManyWithoutUserInput
+  inventories: InventoryUpdateManyWithoutUserInput
+  inventoryItems: InventoryItemUpdateManyWithoutUserInput
+  customers: CustomerUpdateManyWithoutUserInput
+  sales: SaleUpdateManyWithoutUserInput
+  saleItems: SaleItemUpdateManyInput
+  expenses: ExpenseUpdateManyWithoutUserInput
+}
+
+input UserUpdateInput {
+  email: String
+  password: String
+  role: String
+  permissions: UserUpdatepermissionsInput
+  verified: Boolean
+  name: String
+  confirmEmailToken: String
+  resetToken: String
+  resetTokenExpiry: String
+  products: ProductUpdateManyWithoutUserInput
+  categories: CategoryUpdateManyWithoutUserInput
+  inventories: InventoryUpdateManyWithoutUserInput
+  inventoryItems: InventoryItemUpdateManyWithoutUserInput
+  customers: CustomerUpdateManyWithoutUserInput
+  sales: SaleUpdateManyWithoutUserInput
+  saleItems: SaleItemUpdateManyInput
+  expenses: ExpenseUpdateManyWithoutUserInput
+}
+
+input UserUpdateManyMutationInput {
+  email: String
+  password: String
+  role: String
+  permissions: UserUpdatepermissionsInput
+  verified: Boolean
+  name: String
+  confirmEmailToken: String
+  resetToken: String
+  resetTokenExpiry: String
+}
+
+input UserUpdateOneRequiredInput {
+  create: UserCreateInput
+  update: UserUpdateDataInput
+  upsert: UserUpsertNestedInput
+  connect: UserWhereUniqueInput
+}
+
+input UserUpdateOneRequiredWithoutCategoriesInput {
+  create: UserCreateWithoutCategoriesInput
+  update: UserUpdateWithoutCategoriesDataInput
+  upsert: UserUpsertWithoutCategoriesInput
+  connect: UserWhereUniqueInput
+}
+
+input UserUpdateOneRequiredWithoutCustomersInput {
+  create: UserCreateWithoutCustomersInput
+  update: UserUpdateWithoutCustomersDataInput
+  upsert: UserUpsertWithoutCustomersInput
+  connect: UserWhereUniqueInput
+}
+
+input UserUpdateOneRequiredWithoutExpensesInput {
+  create: UserCreateWithoutExpensesInput
+  update: UserUpdateWithoutExpensesDataInput
+  upsert: UserUpsertWithoutExpensesInput
+  connect: UserWhereUniqueInput
+}
+
+input UserUpdateOneRequiredWithoutInventoriesInput {
+  create: UserCreateWithoutInventoriesInput
+  update: UserUpdateWithoutInventoriesDataInput
+  upsert: UserUpsertWithoutInventoriesInput
+  connect: UserWhereUniqueInput
+}
+
+input UserUpdateOneRequiredWithoutInventoryItemsInput {
+  create: UserCreateWithoutInventoryItemsInput
+  update: UserUpdateWithoutInventoryItemsDataInput
+  upsert: UserUpsertWithoutInventoryItemsInput
+  connect: UserWhereUniqueInput
+}
+
+input UserUpdateOneRequiredWithoutProductsInput {
+  create: UserCreateWithoutProductsInput
+  update: UserUpdateWithoutProductsDataInput
+  upsert: UserUpsertWithoutProductsInput
+  connect: UserWhereUniqueInput
+}
+
+input UserUpdateOneRequiredWithoutSalesInput {
+  create: UserCreateWithoutSalesInput
+  update: UserUpdateWithoutSalesDataInput
+  upsert: UserUpsertWithoutSalesInput
+  connect: UserWhereUniqueInput
+}
+
+input UserUpdatepermissionsInput {
+  set: [Permission!]
+}
+
+input UserUpdateWithoutCategoriesDataInput {
+  email: String
+  password: String
+  role: String
+  permissions: UserUpdatepermissionsInput
+  verified: Boolean
+  name: String
+  confirmEmailToken: String
+  resetToken: String
+  resetTokenExpiry: String
+  products: ProductUpdateManyWithoutUserInput
+  inventories: InventoryUpdateManyWithoutUserInput
+  inventoryItems: InventoryItemUpdateManyWithoutUserInput
+  customers: CustomerUpdateManyWithoutUserInput
+  sales: SaleUpdateManyWithoutUserInput
+  saleItems: SaleItemUpdateManyInput
+  expenses: ExpenseUpdateManyWithoutUserInput
+}
+
+input UserUpdateWithoutCustomersDataInput {
+  email: String
+  password: String
+  role: String
+  permissions: UserUpdatepermissionsInput
+  verified: Boolean
+  name: String
+  confirmEmailToken: String
+  resetToken: String
+  resetTokenExpiry: String
+  products: ProductUpdateManyWithoutUserInput
+  categories: CategoryUpdateManyWithoutUserInput
+  inventories: InventoryUpdateManyWithoutUserInput
+  inventoryItems: InventoryItemUpdateManyWithoutUserInput
+  sales: SaleUpdateManyWithoutUserInput
+  saleItems: SaleItemUpdateManyInput
+  expenses: ExpenseUpdateManyWithoutUserInput
+}
+
+input UserUpdateWithoutExpensesDataInput {
+  email: String
+  password: String
+  role: String
+  permissions: UserUpdatepermissionsInput
+  verified: Boolean
+  name: String
+  confirmEmailToken: String
+  resetToken: String
+  resetTokenExpiry: String
+  products: ProductUpdateManyWithoutUserInput
+  categories: CategoryUpdateManyWithoutUserInput
+  inventories: InventoryUpdateManyWithoutUserInput
+  inventoryItems: InventoryItemUpdateManyWithoutUserInput
+  customers: CustomerUpdateManyWithoutUserInput
+  sales: SaleUpdateManyWithoutUserInput
+  saleItems: SaleItemUpdateManyInput
+}
+
+input UserUpdateWithoutInventoriesDataInput {
+  email: String
+  password: String
+  role: String
+  permissions: UserUpdatepermissionsInput
+  verified: Boolean
+  name: String
+  confirmEmailToken: String
+  resetToken: String
+  resetTokenExpiry: String
+  products: ProductUpdateManyWithoutUserInput
+  categories: CategoryUpdateManyWithoutUserInput
+  inventoryItems: InventoryItemUpdateManyWithoutUserInput
+  customers: CustomerUpdateManyWithoutUserInput
+  sales: SaleUpdateManyWithoutUserInput
+  saleItems: SaleItemUpdateManyInput
+  expenses: ExpenseUpdateManyWithoutUserInput
+}
+
+input UserUpdateWithoutInventoryItemsDataInput {
+  email: String
+  password: String
+  role: String
+  permissions: UserUpdatepermissionsInput
+  verified: Boolean
+  name: String
+  confirmEmailToken: String
+  resetToken: String
+  resetTokenExpiry: String
+  products: ProductUpdateManyWithoutUserInput
+  categories: CategoryUpdateManyWithoutUserInput
+  inventories: InventoryUpdateManyWithoutUserInput
+  customers: CustomerUpdateManyWithoutUserInput
+  sales: SaleUpdateManyWithoutUserInput
+  saleItems: SaleItemUpdateManyInput
+  expenses: ExpenseUpdateManyWithoutUserInput
+}
+
+input UserUpdateWithoutProductsDataInput {
+  email: String
+  password: String
+  role: String
+  permissions: UserUpdatepermissionsInput
+  verified: Boolean
+  name: String
+  confirmEmailToken: String
+  resetToken: String
+  resetTokenExpiry: String
+  categories: CategoryUpdateManyWithoutUserInput
+  inventories: InventoryUpdateManyWithoutUserInput
+  inventoryItems: InventoryItemUpdateManyWithoutUserInput
+  customers: CustomerUpdateManyWithoutUserInput
+  sales: SaleUpdateManyWithoutUserInput
+  saleItems: SaleItemUpdateManyInput
+  expenses: ExpenseUpdateManyWithoutUserInput
+}
+
+input UserUpdateWithoutSalesDataInput {
+  email: String
+  password: String
+  role: String
+  permissions: UserUpdatepermissionsInput
+  verified: Boolean
+  name: String
+  confirmEmailToken: String
+  resetToken: String
+  resetTokenExpiry: String
+  products: ProductUpdateManyWithoutUserInput
+  categories: CategoryUpdateManyWithoutUserInput
+  inventories: InventoryUpdateManyWithoutUserInput
+  inventoryItems: InventoryItemUpdateManyWithoutUserInput
+  customers: CustomerUpdateManyWithoutUserInput
+  saleItems: SaleItemUpdateManyInput
+  expenses: ExpenseUpdateManyWithoutUserInput
+}
+
+input UserUpsertNestedInput {
+  update: UserUpdateDataInput!
+  create: UserCreateInput!
+}
+
+input UserUpsertWithoutCategoriesInput {
+  update: UserUpdateWithoutCategoriesDataInput!
+  create: UserCreateWithoutCategoriesInput!
+}
+
+input UserUpsertWithoutCustomersInput {
+  update: UserUpdateWithoutCustomersDataInput!
+  create: UserCreateWithoutCustomersInput!
+}
+
+input UserUpsertWithoutExpensesInput {
+  update: UserUpdateWithoutExpensesDataInput!
+  create: UserCreateWithoutExpensesInput!
+}
+
+input UserUpsertWithoutInventoriesInput {
+  update: UserUpdateWithoutInventoriesDataInput!
+  create: UserCreateWithoutInventoriesInput!
+}
+
+input UserUpsertWithoutInventoryItemsInput {
+  update: UserUpdateWithoutInventoryItemsDataInput!
+  create: UserCreateWithoutInventoryItemsInput!
+}
+
+input UserUpsertWithoutProductsInput {
+  update: UserUpdateWithoutProductsDataInput!
+  create: UserCreateWithoutProductsInput!
+}
+
+input UserUpsertWithoutSalesInput {
+  update: UserUpdateWithoutSalesDataInput!
+  create: UserCreateWithoutSalesInput!
+}
+
+input UserWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  email: String
+  email_not: String
+  email_in: [String!]
+  email_not_in: [String!]
+  email_lt: String
+  email_lte: String
+  email_gt: String
+  email_gte: String
+  email_contains: String
+  email_not_contains: String
+  email_starts_with: String
+  email_not_starts_with: String
+  email_ends_with: String
+  email_not_ends_with: String
+  password: String
+  password_not: String
+  password_in: [String!]
+  password_not_in: [String!]
+  password_lt: String
+  password_lte: String
+  password_gt: String
+  password_gte: String
+  password_contains: String
+  password_not_contains: String
+  password_starts_with: String
+  password_not_starts_with: String
+  password_ends_with: String
+  password_not_ends_with: String
+  role: String
+  role_not: String
+  role_in: [String!]
+  role_not_in: [String!]
+  role_lt: String
+  role_lte: String
+  role_gt: String
+  role_gte: String
+  role_contains: String
+  role_not_contains: String
+  role_starts_with: String
+  role_not_starts_with: String
+  role_ends_with: String
+  role_not_ends_with: String
+  verified: Boolean
+  verified_not: Boolean
+  name: String
+  name_not: String
+  name_in: [String!]
+  name_not_in: [String!]
+  name_lt: String
+  name_lte: String
+  name_gt: String
+  name_gte: String
+  name_contains: String
+  name_not_contains: String
+  name_starts_with: String
+  name_not_starts_with: String
+  name_ends_with: String
+  name_not_ends_with: String
+  confirmEmailToken: String
+  confirmEmailToken_not: String
+  confirmEmailToken_in: [String!]
+  confirmEmailToken_not_in: [String!]
+  confirmEmailToken_lt: String
+  confirmEmailToken_lte: String
+  confirmEmailToken_gt: String
+  confirmEmailToken_gte: String
+  confirmEmailToken_contains: String
+  confirmEmailToken_not_contains: String
+  confirmEmailToken_starts_with: String
+  confirmEmailToken_not_starts_with: String
+  confirmEmailToken_ends_with: String
+  confirmEmailToken_not_ends_with: String
+  resetToken: String
+  resetToken_not: String
+  resetToken_in: [String!]
+  resetToken_not_in: [String!]
+  resetToken_lt: String
+  resetToken_lte: String
+  resetToken_gt: String
+  resetToken_gte: String
+  resetToken_contains: String
+  resetToken_not_contains: String
+  resetToken_starts_with: String
+  resetToken_not_starts_with: String
+  resetToken_ends_with: String
+  resetToken_not_ends_with: String
+  resetTokenExpiry: String
+  resetTokenExpiry_not: String
+  resetTokenExpiry_in: [String!]
+  resetTokenExpiry_not_in: [String!]
+  resetTokenExpiry_lt: String
+  resetTokenExpiry_lte: String
+  resetTokenExpiry_gt: String
+  resetTokenExpiry_gte: String
+  resetTokenExpiry_contains: String
+  resetTokenExpiry_not_contains: String
+  resetTokenExpiry_starts_with: String
+  resetTokenExpiry_not_starts_with: String
+  resetTokenExpiry_ends_with: String
+  resetTokenExpiry_not_ends_with: String
+  products_every: ProductWhereInput
+  products_some: ProductWhereInput
+  products_none: ProductWhereInput
+  categories_every: CategoryWhereInput
+  categories_some: CategoryWhereInput
+  categories_none: CategoryWhereInput
+  inventories_every: InventoryWhereInput
+  inventories_some: InventoryWhereInput
+  inventories_none: InventoryWhereInput
+  inventoryItems_every: InventoryItemWhereInput
+  inventoryItems_some: InventoryItemWhereInput
+  inventoryItems_none: InventoryItemWhereInput
+  customers_every: CustomerWhereInput
+  customers_some: CustomerWhereInput
+  customers_none: CustomerWhereInput
+  sales_every: SaleWhereInput
+  sales_some: SaleWhereInput
+  sales_none: SaleWhereInput
+  saleItems_every: SaleItemWhereInput
+  saleItems_some: SaleItemWhereInput
+  saleItems_none: SaleItemWhereInput
+  expenses_every: ExpenseWhereInput
+  expenses_some: ExpenseWhereInput
+  expenses_none: ExpenseWhereInput
+  AND: [UserWhereInput!]
+  OR: [UserWhereInput!]
+  NOT: [UserWhereInput!]
+}
+
+input UserWhereUniqueInput {
+  id: ID
+  email: String
+}

@@ -5,7 +5,55 @@ var typeDefs = require("./prisma-schema").typeDefs;
 
 var models = [
   {
+    name: "Permission",
+    embedded: false
+  },
+  {
     name: "User",
+    embedded: false
+  },
+  {
+    name: "Product",
+    embedded: false
+  },
+  {
+    name: "Category",
+    embedded: false
+  },
+  {
+    name: "Inventory",
+    embedded: false
+  },
+  {
+    name: "InventoryItem",
+    embedded: false
+  },
+  {
+    name: "InventoryItemTransactionAction",
+    embedded: false
+  },
+  {
+    name: "InventoryItemTransaction",
+    embedded: false
+  },
+  {
+    name: "Customer",
+    embedded: false
+  },
+  {
+    name: "SpecialSaleDeductionType",
+    embedded: false
+  },
+  {
+    name: "Sale",
+    embedded: false
+  },
+  {
+    name: "SaleItem",
+    embedded: false
+  },
+  {
+    name: "Expense",
     embedded: false
   }
 ];

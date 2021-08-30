@@ -60,8 +60,6 @@ const opts = {
     credentials: true,
     origin: [ // your frontend url.
       'http://localhost:3000',
-      'https://60cbfcd0bc28c93bb70ff5ba--dailysalesandexpenses.netlify.app',
-      'https://dailysalesandexpenses.netlify.app',
       'https://dailysalesexpensesapp.com/'
     ] 
   }

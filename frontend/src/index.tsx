@@ -29,7 +29,7 @@ const client = new ApolloClient({
   })
 });
 
-ReactGA.initialize('UA-89939726-7');
+ReactGA.initialize('UA-89939726-8');
 ReactGA.pageview(window.location.pathname + window.location.search);
 
 ReactDOM.render(

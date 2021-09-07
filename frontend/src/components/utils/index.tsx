@@ -166,5 +166,6 @@ export const formatNumber = (value: number | string) => {
     if (typeof number === 'string') {
         number = Number(number);
     }
-    return new Intl.NumberFormat('en-IN', { maximumSignificantDigits: 3 }).format(number);
+    const multiplier = Math.pow(10, 2);
+    return Math.round(number * multiplier) / multiplier;
 }

@@ -167,5 +167,6 @@ export const formatNumber = (value: number | string) => {
         number = Number(number);
     }
     const multiplier = Math.pow(10, 2);
-    return Math.round(number * multiplier) / multiplier;
+    const rounded = Math.round(number * multiplier) / multiplier;
+    return rounded.toLocaleString();
 }

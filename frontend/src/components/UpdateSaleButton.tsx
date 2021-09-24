@@ -156,6 +156,7 @@ const UpdateSaleButton = (props: PropTypes) => {
                 footer={null}
                 className='update-sale-modal'
             >
+                <span className='red bold required-label'>Fields marked with * are required</span>
                 <Form
                     form={form}
                     labelAlign='left'
@@ -176,32 +177,7 @@ const UpdateSaleButton = (props: PropTypes) => {
                         }
                     }}
                 >
-                    <Form.Item label='Date of Sale' {...layout} rules={[{ required: true, message: 'This field is required' }]}>
-                        <DatePicker
-                            allowClear={false}
-                            value={moment.unix(timestamp)}
-                            format={'DD-MM-YYYY'}
-                            onChange={(date) => setTimestamp(moment(date as any).unix())}
-                            style={{ width: '190px' }}
-                        />
-                    </Form.Item>
-                    <Form.Item label='Customer' {...layout}>
-                        <Select
-                            value={customerId ? customerId : undefined}
-                            onChange={setCustomerId}
-                            style={{ width: '190px' }}
-                        >
-                            {
-                                _.map(customers, customer => (
-                                    <Select.Option key={customer.id} value={customer.id}>{customer.name}</Select.Option>
-                                ))
-                            }
-                        </Select>
-                    </Form.Item>
-
-                    <Divider />
-
-                    <Form.Item>
+                    <div style={{ marginBottom: '1em' }}>
                         <Button
                             onClick={() => {
                                 const newSaleItems = [...saleItems];
@@ -216,7 +192,7 @@ const UpdateSaleButton = (props: PropTypes) => {
                             }}
                             icon={<PlusOutlined />}
                         >Add Product</Button>
-                    </Form.Item>
+                    </div>
 
                     <Table
                         size='small'
@@ -230,24 +206,27 @@ const UpdateSaleButton = (props: PropTypes) => {
                                 render: (value, record) => {
                                     delete record.product.__typename;
                                     return (
-                                        <Select
-                                            style={{ width: '100%', maxWidth: '180px' }}
-                                            value={record.product.id && JSON.stringify(record.product)}
-                                            onChange={(value) => handleProductChange(record, value)}
-                                            placeholder='Add a product'
-                                        >
-                                            {
-                                                _.map(props.products, product =>
-                                                    <Select.Option
-                                                        value={JSON.stringify(product)}
-                                                        disabled={_.includes(saleItemIds, product.id)}
-                                                        key={product.id}
-                                                    >
-                                                        {product.name}
-                                                    </Select.Option>
-                                                )
-                                            }
-                                        </Select>
+                                        <div style={{ position: 'relative' }}>
+                                            <span className='red bold asterisk-label'>*</span>
+                                            <Select
+                                                style={{ width: '100%', maxWidth: '180px' }}
+                                                value={record.product.id && JSON.stringify(record.product)}
+                                                onChange={(value) => handleProductChange(record, value)}
+                                                placeholder='Add a product'
+                                            >
+                                                {
+                                                    _.map(props.products, product =>
+                                                        <Select.Option
+                                                            value={JSON.stringify(product)}
+                                                            disabled={_.includes(saleItemIds, product.id)}
+                                                            key={product.id}
+                                                        >
+                                                            {product.name}
+                                                        </Select.Option>
+                                                    )
+                                                }
+                                            </Select>
+                                        </div>
                                     );
                                 }
                             },
@@ -259,6 +238,7 @@ const UpdateSaleButton = (props: PropTypes) => {
                                         value={value}
                                         min={1}
                                         onChange={(value) => handleQuantityChange(record, value)}
+                                        style={{ width: '100%', maxWidth: '80px' }}
                                     />
                                 )
                             },
@@ -423,6 +403,29 @@ const UpdateSaleButton = (props: PropTypes) => {
                     </div>
 
                     <Divider />
+
+                    <Form.Item label='Date of Sale' {...layout} rules={[{ required: true, message: 'This field is required' }]}>
+                        <DatePicker
+                            allowClear={false}
+                            value={moment.unix(timestamp)}
+                            format={'DD-MM-YYYY'}
+                            onChange={(date) => setTimestamp(moment(date as any).unix())}
+                            style={{ width: '190px' }}
+                        />
+                    </Form.Item>
+                    <Form.Item label='Customer' {...layout}>
+                        <Select
+                            value={customerId ? customerId : undefined}
+                            onChange={setCustomerId}
+                            style={{ width: '190px' }}
+                        >
+                            {
+                                _.map(customers, customer => (
+                                    <Select.Option key={customer.id} value={customer.id}>{customer.name}</Select.Option>
+                                ))
+                            }
+                        </Select>
+                    </Form.Item>
 
                     <Form.Item
                         label="Notes"

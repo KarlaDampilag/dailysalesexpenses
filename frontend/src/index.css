@@ -14,6 +14,9 @@ code {
     monospace;
 }
 
+.red {
+  color: #ff3318;
+}
 .bold {
   font-weight: bold;
 }
@@ -50,6 +53,19 @@ code {
 
 .add-button {
   margin-bottom: 1em;
+}
+
+.required-label {
+  display: block;
+  margin-bottom: .5em;
+  font-size: 10.5pt;
+}
+.asterisk-label {
+  position: absolute;
+  top: -8px;
+  left: -10px;
+  z-index: 100;
+  font-size: 14pt;
 }
 
 .btn-add-margin-left {
@@ -139,9 +155,17 @@ code {
   max-width: 700px !important;
   width: 100% !important;
 }
+.add-sale-modal .ant-modal-body,
+.update-sale-modal .ant-modal-body {
+  padding-top: 10px;
+}
 .add-sale-modal .ant-table-wrapper,
 .update-sale-modal .ant-table-wrapper {
   margin-bottom: 25px;
+}
+
+.ant-modal-body .ant-form-item {
+  margin-bottom: 15px;
 }
 
 .reports-wrapper {

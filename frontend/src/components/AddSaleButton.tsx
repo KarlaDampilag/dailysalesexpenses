@@ -118,9 +118,9 @@ const AddSaleButton = (props: PropTypes) => {
 
     const getFilteredSaleItems = (rawSaleItems: TableSaleItemProps[]): SaleItemProps[] => {
         const cleanSaleItems = _(rawSaleItems)
-            .filter(saleItem =>  (saleItem.product.id != null))
+            .filter(saleItem => (saleItem.product.id != null))
             .map(saleItem => {
-                const duplicate = {...saleItem};
+                const duplicate = { ...saleItem };
                 delete duplicate.timeAdded;
                 return duplicate;
             })
@@ -173,6 +173,7 @@ const AddSaleButton = (props: PropTypes) => {
                 footer={null}
                 className='add-sale-modal'
             >
+                <span className='red bold required-label'>Fields marked with * are required</span>
                 <Form
                     form={form}
                     labelAlign='left'
@@ -181,21 +182,21 @@ const AddSaleButton = (props: PropTypes) => {
                             await createSaleAndItems()
                                 .then(() => {
                                     setModalIsVisible(false);
-                                form.resetFields();
-                                setCustomerId(undefined);
-                                setSaleItems([{
-                                    product: {
-                                        id: null
-                                    },
-                                    salePrice: '0',
-                                    quantity: 1,
-                                    timeAdded: moment.now()
-                                }]);
-                                setDiscountType('FLAT');
-                                setDiscountValue(undefined);
-                                setTaxType('FLAT');
-                                setTaxValue(undefined);
-                                message.success('Sale record added');
+                                    form.resetFields();
+                                    setCustomerId(undefined);
+                                    setSaleItems([{
+                                        product: {
+                                            id: null
+                                        },
+                                        salePrice: '0',
+                                        quantity: 1,
+                                        timeAdded: moment.now()
+                                    }]);
+                                    setDiscountType('FLAT');
+                                    setDiscountValue(undefined);
+                                    setTaxType('FLAT');
+                                    setTaxValue(undefined);
+                                    message.success('Sale record added');
                                 })
                                 .catch(res => {
                                     _.forEach(res.graphQLErrors, error => message.error(error.message));
@@ -206,32 +207,7 @@ const AddSaleButton = (props: PropTypes) => {
                         }
                     }}
                 >
-                    <Form.Item label='Date of Sale' {...layout} rules={[{ required: true, message: 'This field is required' }]}>
-                        <DatePicker
-                            allowClear={false}
-                            format={'DD-MM-YYYY'}
-                            value={moment.unix(timestamp)}
-                            onChange={(date) => setTimestamp(moment(date as any).unix())}
-                            style={{ width: '190px' }}
-                        />
-                    </Form.Item>
-                    <Form.Item label='Customer' {...layout}>
-                        <Select
-                            value={customerId}
-                            onChange={setCustomerId}
-                            style={{ width: '190px' }}
-                        >
-                            {
-                                _.map(customers, customer => (
-                                    <Select.Option key={customer.id} value={customer.id}>{customer.name}</Select.Option>
-                                ))
-                            }
-                        </Select>
-                    </Form.Item>
-
-                    <Divider />
-
-                    <Form.Item>
+                    <div style={{ marginBottom: '1em' }}>
                         <Button
                             onClick={() => {
                                 const newSaleItems = [...saleItems];
@@ -247,7 +223,7 @@ const AddSaleButton = (props: PropTypes) => {
                             }}
                             icon={<PlusOutlined />}
                         >Add Product</Button>
-                    </Form.Item>
+                    </div>
 
                     <Table
                         size='small'
@@ -260,24 +236,28 @@ const AddSaleButton = (props: PropTypes) => {
                                 title: 'Product',
                                 dataIndex: 'id',
                                 render: (value, record) => (
-                                    <Select
-                                        style={{ width: '100%', maxWidth: '190px' }}
-                                        value={record.product.id && JSON.stringify(record.product)}
-                                        onChange={(value) => handleProductChange(record, value)}
-                                        placeholder='Add a product'
-                                    >
-                                        {
-                                            _.map(props.products, product =>
-                                                <Select.Option
-                                                    value={JSON.stringify(product)}
-                                                    disabled={_.includes(saleItemIds, product.id)}
-                                                    key={product.id}
-                                                >
-                                                    {product.name}
-                                                </Select.Option>
-                                            )
-                                        }
-                                    </Select>
+                                    <div style={{ position: 'relative' }}>
+                                        <span className='red bold asterisk-label'>*</span>
+                                        <Select
+                                            showSearch
+                                            style={{ width: '100%', maxWidth: '190px' }}
+                                            value={record.product.id && JSON.stringify(record.product)}
+                                            onChange={(value) => handleProductChange(record, value)}
+                                            placeholder='Add a product'
+                                        >
+                                            {
+                                                _.map(props.products, product =>
+                                                    <Select.Option
+                                                        value={JSON.stringify(product)}
+                                                        disabled={_.includes(saleItemIds, product.id)}
+                                                        key={product.id}
+                                                    >
+                                                        {product.name}
+                                                    </Select.Option>
+                                                )
+                                            }
+                                        </Select>
+                                    </div>
                                 )
                             },
                             {
@@ -289,6 +269,7 @@ const AddSaleButton = (props: PropTypes) => {
                                         value={value}
                                         min={1}
                                         onChange={(value) => handleQuantityChange(record, value)}
+                                        style={{ width: '100%', maxWidth: '80px' }}
                                     />
                                 )
                             },
@@ -433,11 +414,7 @@ const AddSaleButton = (props: PropTypes) => {
                         </div>
                     </div>
 
-                    <Form.Item
-                        label='Shipping'
-                        name='shipping'
-                        {...layout}
-                    >
+                        <span>Shipping:</span>
                         <InputNumber
                             value={shipping ? parseFloat(shipping) : 0}
                             onChange={value => {
@@ -448,7 +425,6 @@ const AddSaleButton = (props: PropTypes) => {
                                 setShipping(valueToSet);
                             }}
                         />
-                    </Form.Item>
 
                     <Divider />
 
@@ -457,6 +433,30 @@ const AddSaleButton = (props: PropTypes) => {
                     </div>
 
                     <Divider />
+
+                    <Form.Item label='Date of Sale' {...layout} rules={[{ required: true, message: 'This field is required' }]}>
+                        <DatePicker
+                            allowClear={false}
+                            format={'DD-MM-YYYY'}
+                            value={moment.unix(timestamp)}
+                            onChange={(date) => setTimestamp(moment(date as any).unix())}
+                            style={{ width: '190px' }}
+                        />
+                    </Form.Item>
+
+                    <Form.Item label='Customer' {...layout}>
+                        <Select
+                            value={customerId}
+                            onChange={setCustomerId}
+                            style={{ width: '190px' }}
+                        >
+                            {
+                                _.map(customers, customer => (
+                                    <Select.Option key={customer.id} value={customer.id}>{customer.name}</Select.Option>
+                                ))
+                            }
+                        </Select>
+                    </Form.Item>
 
                     <Form.Item
                         label="Notes"
@@ -469,7 +469,7 @@ const AddSaleButton = (props: PropTypes) => {
                     <Form.Item>
                         <Button type="primary" htmlType="submit" disabled={createSaleLoading} loading={createSaleLoading} style={{ width: '100%' }}>
                             Add{createSaleLoading ? 'ing' : ' '} Sale Record
-                                </Button>
+                        </Button>
                     </Form.Item>
                 </Form>
             </Modal>

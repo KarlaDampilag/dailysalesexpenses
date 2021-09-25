@@ -144,6 +144,7 @@ const UpdateProductButton = (props: PropTypes) => {
           <Form.Item
             label="Name"
             name="name"
+            rules={[{ required: true, message: 'This field is required' }]}
           >
             <Input onChange={e => setName(e.target.value)} />
           </Form.Item>
@@ -151,6 +152,7 @@ const UpdateProductButton = (props: PropTypes) => {
           <Form.Item
             label="Sale Price"
             name="salePrice"
+            rules={[{ required: true, message: 'This field is required' }]}
           >
             <Input type='number' onChange={e => setSalePrice(e.target.value.toString())} />
           </Form.Item>

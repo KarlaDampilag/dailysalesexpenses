@@ -7,6 +7,7 @@ import { RightSquareTwoTone, DownSquareTwoTone } from '@ant-design/icons';
 
 import { userContext } from './App';
 import AddProductButton from './AddProductButton';
+import ImportProductButton from './ImportProductButton/ImportProductButton';
 import UpdateProductButton from './UpdateProductButton';
 import DeleteButton from './DeleteButton';
 import withWindowDimension from './withWindowDimenstions';
@@ -180,6 +181,7 @@ const Products = (props: Properties) => {
                 return (
                     <>
                         <AddProductButton categories={categoriesData} />
+                        <ImportProductButton />
                         <Table
                             bordered
                             loading={loading}

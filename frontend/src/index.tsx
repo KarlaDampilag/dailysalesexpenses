@@ -14,9 +14,6 @@ import { createHttpLink  } from 'apollo-link-http';
 
 const serverURL = process.env.NODE_ENV === 'production' ? process.env.REACT_APP_PROD_API_URL : process.env.REACT_APP_DEV_API_URL;
 
-console.log(process.env.NODE_ENV)
-console.log(serverURL)
-
 const httpLink = createHttpLink({
   uri: serverURL,
   credentials: 'include'

@@ -225,7 +225,7 @@ const AddProductButton = (props: PropTypes) => {
                 icon={<PlusOutlined />}
                 className='add-button btn-add-margin-left'
             >
-                <span className='no-550'>Add Product</span>
+                <span>Add Product</span>
             </Button>
         </>
     );

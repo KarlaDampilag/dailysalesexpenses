@@ -1,7 +1,7 @@
 import React from 'react';
 import _ from 'lodash';
 import parse from 'csv-parse';
-import { Button, Form, Modal, Table } from 'antd';
+import { Button, Form, message, Modal, Table } from 'antd';
 import { CloudUploadOutlined } from '@ant-design/icons';
 
 import ErrorNotificationModal from '../ErrorNotificationModal';
@@ -90,6 +90,10 @@ const ImportProductButton = () => {
         }
     ];
 
+    const handleImportSubmit = () => {
+        message.info('This feature is under development', 5);
+    }
+
     return (
         <>
             <ErrorNotificationModal
@@ -113,7 +117,6 @@ const ImportProductButton = () => {
                 className='import-csv-modal'
             >
                 <Form
-                    onFinish={() => setIsShowingModal(true)}
                     {...layout}
                 >
                     <Form.Item
@@ -142,7 +145,9 @@ const ImportProductButton = () => {
                     columns={columns}
                 />
 
-                <Button type="primary" htmlType="submit" loading={isLoadingFile} style={{ width: '100%' }}>Import{isLoadingFile ? 'ing ' : ' '} Products</Button>
+                <Button type="primary" htmlType="submit" loading={isLoadingFile} style={{ width: '100%' }} onClick={handleImportSubmit}>
+                    Import{isLoadingFile ? 'ing ' : ' '} Products
+                </Button>
             </Modal>
             <Button
                 onClick={() => setIsShowingModal(true)}

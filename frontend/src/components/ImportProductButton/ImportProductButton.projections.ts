@@ -10,9 +10,10 @@ export const normalizeFile = (event: any) => {
 };
 
 export const normalizeParsedData = (data: any[], errorCallback: (errors: string[]) => void): IProduct[] => {
+    const errorMessages: string[] = [];
+
     if (!_.isEmpty(data)) {
         let isValid = true;
-        const errorMessages: string[] = [];
         const products = _.map(data, (entry, key) => {
             const entryClone = { ...entry };
 
@@ -61,6 +62,8 @@ export const normalizeParsedData = (data: any[], errorCallback: (errors: string[
             return [];
         }
     } else {
+        errorMessages.push('Minimum of one product is required. Please make sure you have at least one product row in your csv file.');
+        errorCallback(errorMessages);
         return [];
     }
 }

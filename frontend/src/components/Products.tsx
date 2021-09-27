@@ -144,7 +144,7 @@ const Products = (props: Properties) => {
         message.info('Please wait...');
         await deleteProduct()
             .then(() => {
-                message.success('Product deleted');
+                message.success('Product deleted', 5);
             })
             .catch(res => {
                 _.forEach(res.graphQLErrors, error => message.error(error.message));

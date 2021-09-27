@@ -32,7 +32,7 @@ async function signup(parent, args, ctx, info) {
 
     // email them that verification token
     const mailResponse = await transport.sendMail({
-        from: MAIL_USER, 
+        from: MAIL_USER,
         to: args.email,
         subject: 'Please confirm your email',
         html: makeANiceEmail(
@@ -104,6 +104,46 @@ async function createProduct(parent, args, ctx, info) {
     });
 
     return product;
+}
+
+async function createProducts(parent, args, ctx, info) {
+    if (!ctx.request.userId) {
+        throw new Error('You must be logged in to do that.');
+    }
+
+    const savedProducts = [];
+
+    await Promise.all(args.products.map(async (product) => {
+        console.log(product)
+        if (product.categories) {
+            const newCategories = await Promise.all(product.categories.map(async name => {
+                const newCategory = await ctx.prisma.createCategory({
+                    // create a relationship between the category and the user
+                    user: {
+                        connect: {
+                            id: ctx.request.userId
+                        }
+                    },
+                    name: name
+                });
+                return newCategory;
+            }));
+        }
+
+        const newProduct = await ctx.prisma.createProduct({
+            ...product,
+            // create a relationship between the product and the user
+            user: {
+                connect: {
+                    id: ctx.request.userId
+                }
+            },
+            categories: { set: product.categories }
+        });
+        savedProducts.push(newProduct);
+    }));
+
+    return savedProducts;
 }
 
 async function createCategories(parent, args, ctx, info) {
@@ -879,6 +919,7 @@ module.exports = {
     login,
     logout,
     createProduct,
+    createProducts,
     createCategories,
     updateProduct,
     deleteProduct,

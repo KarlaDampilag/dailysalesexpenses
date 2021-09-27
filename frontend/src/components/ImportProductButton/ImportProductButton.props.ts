@@ -3,6 +3,7 @@ export default interface IProduct {
     salePrice: number,
     costPrice?: number,
     sku?: string,
+    unit?: string,
     categories?: string[],
     notes?: string
 }

@@ -1,13 +1,12 @@
 import React from 'react';
 import _ from 'lodash';
-import parse from 'csv-parse';
 import { Button, Form, message, Modal, Table } from 'antd';
 import { CloudUploadOutlined } from '@ant-design/icons';
 
 import ErrorNotificationModal from '../ErrorNotificationModal';
 
 import IProduct from './ImportProductButton.props';
-import { normalizeFile, normalizeParsedData } from './ImportProductButton.projections';
+import { normalizeFile, normalizeParsedData, columns, handleFileUploadChange } from './ImportProductButton.projections';
 
 const ImportProductButton = () => {
     const [isShowingModal, setIsShowingModal] = React.useState<boolean>(false);
@@ -35,60 +34,6 @@ const ImportProductButton = () => {
         }
         setIsLoadingFile(false);
     }
-
-    const handleFileUploadChange = (event: any) => {
-        const file = normalizeFile(event);
-        const reader = new FileReader();
-
-        reader.onload = (e) => {
-            if (e && e.target && e.target.result) {
-                const bstr: string = e.target.result as string;
-                parse(
-                    bstr,
-                    {
-                        delimiter: ';',
-                        columns: true
-                    },
-                    parserCallback
-                );
-            }
-        };
-        reader.readAsBinaryString(file);
-    };
-
-    const columns = [
-        {
-            title: 'Name',
-            dataIndex: 'name'
-        },
-        {
-            title: 'Sale Price',
-            dataIndex: 'salePrice'
-        },
-        {
-            title: 'Cost Price',
-            dataIndex: 'costPrice'
-        },
-        {
-            title: 'SKU',
-            dataIndex: 'sku'
-        },
-        {
-            title: 'Categories',
-            dataIndex: 'categories',
-            render: (value: string[]) => {
-                if (!_.isEmpty(value)) {
-                    return value.join(', ');
-                } else {
-                    return null;
-                }
-            }
-        },
-        {
-            title: 'Notes',
-            dataIndex: 'notes'
-        }
-    ];
 
     const handleImportSubmit = () => {
         message.info('This feature is under development', 5);
@@ -133,7 +78,7 @@ const ImportProductButton = () => {
                             accept='.csv'
                             onChange={(e) => {
                                 setIsLoadingFile(true);
-                                handleFileUploadChange(e);
+                                handleFileUploadChange(e, parserCallback);
                             }} />
                     </Form.Item>
                 </Form>

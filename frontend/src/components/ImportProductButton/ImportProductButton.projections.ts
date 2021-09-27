@@ -1,4 +1,5 @@
 import _ from 'lodash';
+import parse from 'csv-parse';
 
 import IProduct from './ImportProductButton.props';
 
@@ -33,6 +34,10 @@ export const normalizeParsedData = (data: any[], errorCallback: (errors: string[
                 entryClone.sku = null;
             }
 
+            if (entry.unit.length < 1) {
+                entryClone.unit = null;
+            }
+
             if (entry.categories.length < 1) {
                 entryClone.categories = null;
             }
@@ -59,3 +64,60 @@ export const normalizeParsedData = (data: any[], errorCallback: (errors: string[
         return [];
     }
 }
+
+export const columns = [
+    {
+        title: 'Name',
+        dataIndex: 'name'
+    },
+    {
+        title: 'Sale Price',
+        dataIndex: 'salePrice'
+    },
+    {
+        title: 'Cost Price',
+        dataIndex: 'costPrice'
+    },
+    {
+        title: 'SKU',
+        dataIndex: 'sku'
+    },{
+        title: 'Unit',
+        dataIndex: 'unit'
+    },
+    {
+        title: 'Categories',
+        dataIndex: 'categories',
+        render: (value: string[]) => {
+            if (!_.isEmpty(value)) {
+                return value.join(', ');
+            } else {
+                return null;
+            }
+        }
+    },
+    {
+        title: 'Notes',
+        dataIndex: 'notes'
+    }
+];
+
+export const handleFileUploadChange = (event: any, parserCallback: (error: any, output: any) => any) => {
+    const file = normalizeFile(event);
+    const reader = new FileReader();
+
+    reader.onload = (e) => {
+        if (e && e.target && e.target.result) {
+            const bstr: string = e.target.result as string;
+            parse(
+                bstr,
+                {
+                    delimiter: ';',
+                    columns: true
+                },
+                parserCallback
+            );
+        }
+    };
+    reader.readAsBinaryString(file);
+};

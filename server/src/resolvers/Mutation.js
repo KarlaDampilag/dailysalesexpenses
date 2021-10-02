@@ -114,7 +114,6 @@ async function createProducts(parent, args, ctx, info) {
     const savedProducts = [];
 
     await Promise.all(args.products.map(async (product) => {
-        console.log(product)
         if (product.categories) {
             const newCategories = await Promise.all(product.categories.map(async name => {
                 const newCategory = await ctx.prisma.createCategory({

@@ -101,12 +101,6 @@ const ImportProductButton = () => {
                 messages={errorMessages}
                 onClose={() => setIsShowingErrorNotification(false)}
             />
-            <ErrorNotificationModal
-                visible={isShowingErrorNotification}
-                title='There was a problem parsing your csv file'
-                messages={errorMessages}
-                onClose={() => setIsShowingErrorNotification(false)}
-            />
 
             <Modal
                 title='Import Product CSV'

@@ -17,37 +17,37 @@ export const normalizeParsedData = (data: any[], errorCallback: (errors: string[
         const products = _.map(data, (entry, key) => {
             const entryClone = { ...entry };
 
-            if (entry.name.length < 1) {
+            if (entry.name?.length < 1) {
                 isValid = false;
                 errorMessages.push(`Row ${key + 1} is missing a name which is required.`);
 
             }
-            if (entry.salePrice.length < 1) {
+            if (entry.salePrice?.length < 1) {
                 isValid = false;
                 errorMessages.push(`Row ${key + 1} is missing a salePrice which is required.`);
             }
 
-            if (entry.costPrice.length < 1) {
+            if (entry.costPrice?.length < 1) {
                 entryClone.costPrice = null;
             }
 
-            if (entry.sku.length < 1) {
+            if (entry.sku?.length < 1) {
                 entryClone.sku = null;
             }
 
-            if (entry.unit.length < 1) {
+            if (entry.unit?.length < 1) {
                 entryClone.unit = null;
             }
 
-            if (entry.categories.length < 1) {
+            if (entry.categories?.length < 1) {
                 entryClone.categories = null;
             }
 
-            if (entry.notes.length < 1) {
+            if (entry.notes?.length < 1) {
                 entryClone.notes = null;
             }
 
-            if (entry.categories.length > 0) {
+            if (entry.categories?.length > 0) {
                 entryClone.categories = entry.categories.split(',');
             } else {
                 entryClone.categories = null;

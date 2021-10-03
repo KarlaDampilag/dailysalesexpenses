@@ -48,7 +48,7 @@ export const normalizeParsedData = (data: any[], errorCallback: (errors: string[
             }
 
             if (entry.categories?.length > 0) {
-                entryClone.categories = entry.categories.split(',');
+                entryClone.categories = entry.categories.split(';');
             } else {
                 entryClone.categories = null;
             }
@@ -115,7 +115,6 @@ export const handleFileUploadChange = (event: any, parserCallback: (error: any, 
             parse(
                 bstr,
                 {
-                    delimiter: ';',
                     columns: true
                 },
                 parserCallback

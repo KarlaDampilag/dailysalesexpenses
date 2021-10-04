@@ -11,6 +11,7 @@ import AddSaleButton from './AddSaleButton';
 import UpdateSaleButton from './UpdateSaleButton';
 import DeleteButton from './DeleteButton';
 import SaleDetails from './SaleDetails';
+import ImportSalesButton from './ImportSalesButton/ImportSalesButton';
 import { paginationConfig } from './configs';
 import { calculateProfitBySale, calculateSubtotalBySaleItems, calculateTotalBySale } from '../services/main';
 import { sortByProperty, getColumnSearchProps, formatNumber } from './utils/index';
@@ -23,6 +24,7 @@ const PRODUCTS_BY_USER_QUERY = gql`
             salePrice
             costPrice
             categories
+            sku
         }
     }
 `;
@@ -96,10 +98,6 @@ const Sales = () => {
         delete product.__typename;
     });
 
-    // const handleExportClick = () => {
-    //     window.print();
-    // }
-
     const onSaleDelete = async () => {
         message.info('Please wait...');
         await deleteSaleAndItems()
@@ -124,6 +122,7 @@ const Sales = () => {
                 return (
                     <>
                         <AddSaleButton products={products} />
+                        <ImportSalesButton products={productsByUserData?.productsByUser} />
 
                         {/*<Tooltip title="Choose 'Save as PDF' under 'Destination' in the next window">
                             <DownloadButton title='Download PDF' onClick={handleExportClick} size='large' />

@@ -16,7 +16,7 @@ const ErrorNotificationModal = (props: PropTypes) => {
                 visible={props.visible}
                 className='import-error-modal'
                 footer={[
-                    <Button onClick={props.onClose}>OK</Button>
+                    <Button onClick={props.onClose} key='ok-btn'>OK</Button>
                 ]}
             >
                 <div className='import-error-modal-container'>
@@ -24,8 +24,8 @@ const ErrorNotificationModal = (props: PropTypes) => {
                     <span><b>{props.title}</b></span>
                 </div>
                 {
-                    _.map(props.messages, message => (
-                        <p>{message}</p>
+                    _.map(props.messages, (message, key) => (
+                        <p key={key}>{message}</p>
                     ))
                 }
                 <p>If you're having trouble uploading your csv file, please contact <a href='mailto:hello@dailysalesexpensesapp.com'>hello@dailysalesexpensesapp.com</a> - we'll be happy to assist you :)</p>

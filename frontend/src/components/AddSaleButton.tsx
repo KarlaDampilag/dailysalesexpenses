@@ -479,7 +479,7 @@ const AddSaleButton = (props: PropTypes) => {
                 icon={<PlusOutlined />}
                 className='add-button btn-add-margin-left'
             >
-                <span className='no-550'>Add Sale Record</span>
+                <span>Sale Record</span>
             </Button>
         </>
     )

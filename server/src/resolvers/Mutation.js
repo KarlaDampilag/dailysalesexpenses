@@ -425,6 +425,7 @@ async function createSaleAndItems(parent, args, ctx, info) {
                 salePrice
                 costPrice
                 categories
+                sku
             }
             salePrice
             costPrice
@@ -474,6 +475,7 @@ async function deleteSaleAndItems(parent, args, ctx, info) {
                 salePrice
                 costPrice
                 categories
+                sku
             }
             salePrice
             costPrice
@@ -585,6 +587,7 @@ async function updateSaleAndItems(parent, args, ctx, info) {
                 salePrice
                 costPrice
                 categories
+                sku
             }
             salePrice
             costPrice

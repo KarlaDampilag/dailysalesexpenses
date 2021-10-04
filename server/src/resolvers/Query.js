@@ -141,6 +141,7 @@ async function salesByUser(parent, args, ctx, info) {
                 salePrice
                 costPrice
                 categories
+                sku
             }
             salePrice
             costPrice

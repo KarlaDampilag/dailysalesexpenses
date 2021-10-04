@@ -46,6 +46,7 @@ const SALES_BY_USER_QUERY = gql`
                     salePrice
                     costPrice
                     categories
+                    sku
                 }
                 salePrice
                 costPrice

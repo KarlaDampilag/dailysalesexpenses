@@ -98,7 +98,7 @@ const Sales = () => {
         delete product.__typename;
     });
 
-    const onSaleDelete = async () => {
+    const onSaleDelete = React.useCallback(async () => {
         message.info('Please wait...');
         await deleteSaleAndItems()
             .then(() => {
@@ -108,7 +108,11 @@ const Sales = () => {
                 _.forEach(res.graphQLErrors, error => message.error(error.message));
                 message.error('Error: cannot delete. Please contact SourceCodeXL.');
             });
-    }
+    }, [deleteSaleAndItems]);
+
+    const expandedRowRenderer = React.useCallback((record: any) => (
+        <SaleDetails sale={record} products={products} setIdForDeletion={setIdForDeletion} onDelete={onSaleDelete} />
+    ), [onSaleDelete, products]);
 
     return (
         <userContext.Consumer>
@@ -136,7 +140,7 @@ const Sales = () => {
                                 className='sales-table'
                                 rowClassName='sales-table-row'
                                 expandable={{
-                                    expandedRowRender: record => <SaleDetails sale={record} products={products} setIdForDeletion={setIdForDeletion} onDelete={onSaleDelete} />,
+                                    expandedRowRender: expandedRowRenderer,
                                     expandIcon: ({ expanded, onExpand, record }) => (
                                         expanded ? <DownSquareTwoTone onClick={e => onExpand(record, e)} style={{ fontSize: '18pt' }} className='section-to-hide' />
                                             : <RightSquareTwoTone onClick={e => onExpand(record, e)} style={{ fontSize: '18pt' }} className='section-to-hide' />

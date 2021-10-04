@@ -21,6 +21,7 @@ input SaleItemProductInput {
   salePrice: String!
   costPrice: String
   categories: [String!]
+  sku: String
 }
 
 input InventoryItemProductInput {

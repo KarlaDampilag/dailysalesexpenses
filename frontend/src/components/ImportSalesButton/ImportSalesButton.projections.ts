@@ -46,7 +46,7 @@ export const normalizeParsedData = (
                 errorMessages.push(`Row ${index + 1} is missing an sku which is required.`);
             } else {
                 const product = _.find(allProducts, thisProduct => {
-                    return thisProduct.sku == entry.sku.trim();
+                    return thisProduct.sku === entry.sku.trim();
                 });
 
                 if (product) {

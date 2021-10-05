@@ -51,6 +51,10 @@ code {
   padding-top: 2em;
 }
 
+.static-pages-container {
+  padding: 1em
+}
+
 .add-button {
   margin-bottom: 1em;
 }

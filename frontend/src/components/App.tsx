@@ -19,6 +19,8 @@ import ResetPassword from './ResetPassword';
 import ConfirmEmail from './ConfirmEmail';
 import FeatureBug from './FeatureBug';
 import CustomSpin from './CustomSpin';
+import PrivacyPolicy from './pages/PrivacyPolicy';
+import TermsConditions from './pages/TermsConditions';
 
 const CURRENT_USER_QUERY = gql`
   {
@@ -69,6 +71,8 @@ function App() {
                 <Route exact path="/resetPassword" component={ResetPassword} />
                 <Route exact path="/confirmEmail" component={ConfirmEmail} />
                 <Route exact path="/typeform" component={FeatureBug} />
+                <Route exact path="/privacy-policy" component={PrivacyPolicy} />
+                <Route exact path="/terms-conditions" component={TermsConditions} />
                 <Route component={Page404} />
               </Switch>
             }

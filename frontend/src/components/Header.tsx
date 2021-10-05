@@ -27,6 +27,8 @@ const Header = (props: PropTypes) => {
                 {/*<Menu.Item key='inventories'><Link to="/inventories">Inventories</Link></Menu.Item>*/}
                 <Menu.Item key='customers'><Link to="/customers">Customers</Link></Menu.Item>
                 <Menu.Item key='typeform'><Link to="/typeform">Request Feature / Report Bug</Link></Menu.Item>
+                <Menu.Item key='privacy-policy'><Link to="/privacy-policy">Privacy Policy</Link></Menu.Item>
+                <Menu.Item key='terms-conditions'><Link to="/terms-conditions">Terms & Conditions</Link></Menu.Item>
                 <Menu.Item key='requestResetPassword'><Link to="/requestResetPassword">Reset Password</Link></Menu.Item>
                 {props.user && <Menu.Item><LogoutButton /></Menu.Item>}
                 {!props.user && <Menu.Item><Link to="/signup">Sign Up</Link></Menu.Item>}

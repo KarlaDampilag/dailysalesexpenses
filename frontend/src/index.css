@@ -52,7 +52,22 @@ code {
 }
 
 .static-pages-container {
-  padding: 1em
+  padding: 1em;
+  font-size: 12pt;
+}
+
+.highlight-paragraph-container {
+  padding: 1em 1em 0.5em;
+  margin-bottom: 1em;
+  background-color: #f7f8f9;
+}
+
+.highlight-paragraph-icon {
+  margin-right: 0.3em;
+}
+.highlight-paragraph-title {
+  font-weight: bold;
+  font-size: 14pt;
 }
 
 .add-button {

@@ -2,8 +2,10 @@ import React from 'react';
 import { Table, Image } from 'antd';
 
 import HighlightParagraph from '../../HighlightParagraph';
-import productCSVImage from '../../../images/products-csv-screenshot.png';
-import salesRecordCSVImage from '../../../images/sales-record-csv-screenshot.png'
+import productCSVPlainTextImage from '../../../images/products-csv-screenshot.png';
+import productCSVSpreadSheetImage from '../../../images/products-csv-table-screenshot.png';
+import salesRecordCSVPlainTextImage from '../../../images/sales-record-csv-screenshot.png';
+import salesRecordCSVSpreadShetImage from '../../../images/sales-record-csv-table-screenshot.png';
 
 const Csv = () => {
     const productTableData = React.useMemo(() => {
@@ -95,17 +97,29 @@ const Csv = () => {
             <h3>It should look like this:</h3>
             <div>
                 <div>
-                    <p>1. Products CSV file sample (click to zoom on mobile)</p>
+                    <p>1. Products CSV file sample:</p>
+                    <p>Plain text (click to zoom on mobile):</p>
                     <Image
-                        src={productCSVImage}
-                        alt='product csv file sample'
+                        src={productCSVPlainTextImage}
+                        alt='product csv file sample plain text'
+                    />
+                    <p>Spreadsheet (click to zoom on mobile):</p>
+                    <Image
+                        src={productCSVSpreadSheetImage}
+                        alt='product csv file sample spreadsheet'
                     />
                 </div>
                 <div>
                     <p>2. Sales record CSV file sample:</p>
+                    <p>Plain text:</p>
                     <Image
-                        src={salesRecordCSVImage}
+                        src={salesRecordCSVPlainTextImage}
                         alt='sales record csv file sample'
+                    />
+                    <p>Spreadsheet:</p>
+                    <Image
+                        src={salesRecordCSVSpreadShetImage}
+                        alt='sales record csv file sample spreadsheet'
                     />
                 </div>
             </div>

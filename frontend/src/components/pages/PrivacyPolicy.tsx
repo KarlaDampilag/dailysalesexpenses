@@ -66,18 +66,14 @@ const PrivacyPolicy = () => {
                 <p>We may disclose personal information to:</p>
 
                 <ul>
-                    <li>a parent, subsidiary, or affiliate of our company</li>
-                    <li>third party service providers for the purpose of enabling them to provide their services, for example, IT service providers, data storage, hosting and server providers, advertisers, or analytics platforms</li>
-                    <li>our employees, contractors, and/or related entities</li>
+                    <li>third party service providers for the purpose of enabling them to provide their services, for example, hosting and server providers, or analytics platforms</li>
                     <li>courts, tribunals, regulatory authorities, and law enforcement officers, as required by law, in connection with any actual or prospective legal proceedings, or in order to establish, exercise, or defend our legal
                         rights</li>
-                    <li>third parties, including agents or sub-contractors, who assist us in providing information, products, services, or direct marketing to you</li>
-                    <li> third parties to collect and process data</li>
                 </ul>
 
                 <h2>International Transfers of Personal Information</h2>
-                <p>The personal information we collect is stored and/or processed where we or our partners, affiliates, and third-party providers maintain facilities. Please be aware that the locations to which we store, process,
-                    or transfer your personal information may not have the same data protection laws as the country in which you initially provided the information. If we transfer your personal information to third parties in other
+                <p>The personal information we collect is stored and/or processed where we maintain facilities. Please be aware that the locations to which we store, process,
+                    or transfer your personal information may not have the same data protection laws as the country in which you initially provided the information. If we transfer your personal information to hosting and server providers in other
                     countries: (i) we will perform those transfers in accordance with the requirements of applicable law; and (ii) we will protect the transferred personal information in accordance with this privacy policy.</p>
 
                 <h2>Your Rights and Controlling Your Personal Information</h2>

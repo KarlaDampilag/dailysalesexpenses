@@ -1,8 +1,0 @@
-endpoint: https://us1.prisma.sh/karla-dampilag-e82c27/dailysalesexpenses2/dev
-datamodel: datamodel.prisma
-
-generate:
-  - generator: javascript-client
-    output: ./generated/prisma-client/
-  - generator: graphql-schema # <-- Add graphql-schema generator
-    output: ./generated/prisma.graphql

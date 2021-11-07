@@ -637,15 +637,15 @@ no-900
   .expense-detail-mobile .summary-row span:first-of-type {
     flex-grow: 0.4;
   }
+  .reports-card-value {
+    font-size: 15pt;
+  }
 }
 
 @media screen and (max-width: 330px) {
   .reports-card-label {
     line-height: 5px;
     font-size: 12pt;
-  }
-  .reports-card-value {
-    font-size: 20pt;
   }
   .top-products-card .ant-card-body,
   .top-categories-card .ant-card-body,

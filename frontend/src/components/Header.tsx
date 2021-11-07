@@ -26,11 +26,13 @@ const Header = (props: PropTypes) => {
                 <Menu.Item key='expenses'><Link to="/expenses">Expenses</Link></Menu.Item>
                 {/*<Menu.Item key='inventories'><Link to="/inventories">Inventories</Link></Menu.Item>*/}
                 <Menu.Item key='customers'><Link to="/customers">Customers</Link></Menu.Item>
-                <Menu.Item key='docs'><Link to="/docs/csv">User Manual</Link></Menu.Item>
-                <Menu.Item key='typeform'><Link to="/typeform">Request Feature / Report Bug</Link></Menu.Item>
-                <Menu.Item key='privacy-policy'><Link to="/privacy-policy">Privacy Policy</Link></Menu.Item>
-                <Menu.Item key='terms-conditions'><Link to="/terms-conditions">Terms & Conditions</Link></Menu.Item>
-                <Menu.Item key='requestResetPassword'><Link to="/requestResetPassword">Reset Password</Link></Menu.Item>
+                <Menu.SubMenu key="SubMenu" title="Help">
+                    <Menu.Item key='docs'><Link to="/docs/csv">User Manual</Link></Menu.Item>
+                    <Menu.Item key='typeform'><Link to="/typeform">Request Feature / Report Bug</Link></Menu.Item>
+                    <Menu.Item key='privacy-policy'><Link to="/privacy-policy">Privacy Policy</Link></Menu.Item>
+                    <Menu.Item key='terms-conditions'><Link to="/terms-conditions">Terms & Conditions</Link></Menu.Item>
+                    <Menu.Item key='requestResetPassword'><Link to="/requestResetPassword">Reset Password</Link></Menu.Item>
+                </Menu.SubMenu>
                 {props.user && <Menu.Item><LogoutButton /></Menu.Item>}
                 {!props.user && <Menu.Item><Link to="/signup">Sign Up</Link></Menu.Item>}
                 {!props.user && <Menu.Item><Link to="/login">Log In</Link></Menu.Item>}

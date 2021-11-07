@@ -61,6 +61,7 @@ const Login = () => {
                 <Form.Item>
                     <Button disabled={loading} loading={loading} type="primary" htmlType="submit" className="login-form-button">Log In</Button>
                     <div>Don't have an account? <a href="signup">Register</a></div>
+                    <div>Forgot your passowrd? <a href="requestResetPassword">Reset password</a></div>
                 </Form.Item>
             </Form>
         </div>

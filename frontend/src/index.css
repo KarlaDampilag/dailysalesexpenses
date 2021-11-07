@@ -54,6 +54,14 @@ code {
 .static-pages-container {
   padding: 1em;
   font-size: 12pt;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.static-pages-container h2 {
+  margin-top: 1.5em;
+}
+.static-pages-container h3 {
+  margin-top: 1em;
 }
 
 .highlight-paragraph-container {
